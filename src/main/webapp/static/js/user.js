@@ -5,7 +5,7 @@ $(document).ready(function(){
       if(e.keyCode==13){
          var user_name = $name_input.val();
          $.ajax({
-            url:"/users",
+            url:"/users/add",
             data:{user_name:user_name},
             type:"POST",
             success:function(json_user){
@@ -23,10 +23,11 @@ $(document).ready(function(){
         var user_id = $li.data("id");
         var user_name = $li.find("a").text();
         $.ajax({
-            url:"/users",
+            url:"/users/delete",
             data:{user_id:user_id,user_name:user_name},
-            type:"DELETE",
-            success:function(json_user){
+            type:"POST",
+            success:function(){
+                $li.remove();
             }
         })
     });

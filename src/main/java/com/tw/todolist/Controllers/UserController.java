@@ -30,7 +30,7 @@ public class UserController {
         return "userlist";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PrintWriter printWriter = response.getWriter();
         String userName = request.getParameter("user_name");
@@ -40,14 +40,14 @@ public class UserController {
         printWriter.write(jsonUser);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    private void deleteUser(@PathVariable Integer userId ) throws Exception {
-//        String userName = request.getParameter("user_name");
-//        System.out.println(userName);
-//        Integer userId = Integer.valueOf(request.getParameter("user_id"));
-        System.out.println(userId);
-//        User user = new User(userId,userName);
-//        System.out.println(user);
-//        new UserService().delete(user);
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    private void deleteUser(HttpServletRequest request ,HttpServletResponse response) throws Exception {
+        PrintWriter printWriter =response.getWriter();
+        String userName = request.getParameter("user_name");
+        Integer userId = Integer.valueOf(request.getParameter("user_id"));
+        
+        User user = new User(userId,userName);
+        new UserService().delete(user);
+        printWriter.write("success");
     }
 }
