@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
-/**
- * Created by minchina on 14-12-31.
- */
 public class DeleteUserServlet extends HttpServlet{
 
 

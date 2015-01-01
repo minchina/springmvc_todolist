@@ -5,7 +5,7 @@ $(document).ready(function(){
       if(e.keyCode==13){
          var user_name = $name_input.val();
          $.ajax({
-            url:"/todolist_v1/user",
+            url:"/users",
             data:{user_name:user_name},
             type:"POST",
             success:function(json_user){
@@ -23,9 +23,9 @@ $(document).ready(function(){
         var user_id = $li.data("id");
         var user_name = $li.find("a").text();
         $.ajax({
-            url:"/todolist_v1/deleteuser",
+            url:"/users",
             data:{user_id:user_id,user_name:user_name},
-            type:"POST",
+            type:"DELETE",
             success:function(json_user){
             }
         })
