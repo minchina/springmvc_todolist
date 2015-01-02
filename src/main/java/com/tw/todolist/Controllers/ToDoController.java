@@ -17,36 +17,45 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class ToDoController {
-    
-    
+
+
     @RequestMapping(method = RequestMethod.GET)
     public String showAllToDos(ModelMap modelMap) throws Exception {
         List<ToDo> allToDos = new ToDoService().getAll();
         modelMap.addAttribute("allToDos", allToDos);
         return "index";
     }
-    
+
     @RequestMapping(value = "/todo/add", method = RequestMethod.POST)
-    public void addToDo(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public void addToDo(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PrintWriter printWriter = response.getWriter();
 
         String name = request.getParameter("name");
         Integer userId = Integer.valueOf(request.getParameter("user_id"));
-        Integer toDoId= 0;
+        Integer toDoId = 0;
         Integer done = 0;
 
-        ToDo toDo = new ToDo(toDoId,name,userId,done);
+        ToDo toDo = new ToDo(toDoId, name, userId, done);
         toDo = new ToDoService().add(toDo, userId);
-        
+
         String jsonToDo = JSON.toJSONString(toDo);
         printWriter.print(jsonToDo);
     }
-    
-    @RequestMapping(value = "todo/delete", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
     public void deleteToDo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
+
         Integer id = Integer.valueOf(request.getParameter("id"));
         new ToDoService().delete(id);
     }
-    
+
+    @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
+    public void updateToDoStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        String name = request.getParameter("name");
+        Integer status = Integer.valueOf(request.getParameter("status"));
+
+        ToDo toDo = new ToDo(id, name, 0, status);
+        new ToDoService().update(toDo);
+    }
 }

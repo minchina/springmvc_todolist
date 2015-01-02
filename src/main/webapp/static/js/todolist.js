@@ -52,7 +52,7 @@ $(window).ready(function(){
         var $check_box = $li.find(".toggle");
         console.log(data_id,name,is_checked($check_box));
         $.ajax({
-            url:"/todolist_v1/update",
+            url:"/todo/update",
             data:{id:data_id,name:name,status:is_checked($check_box)},
             type:"POST",
             success:function(){
@@ -79,7 +79,7 @@ $(window).ready(function(){
         var data_id = $li.data("id");
         var name = $li.find(".edit").val();
         $.ajax({
-            url:"/todolist_v1/update",
+            url:"/todo/update",
             data:{id:data_id,name:name,status:is_checked($check_box)},
             type:"POST",
             success:function(){
