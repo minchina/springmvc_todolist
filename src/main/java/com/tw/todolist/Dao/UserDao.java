@@ -65,7 +65,7 @@ public class UserDao extends Dao {
         Integer userId = user.getId();
         String sqlString = "delete from user where id=" + userId;
         statement.execute(sqlString);
-        close();
+//        close();
 
     }
 }

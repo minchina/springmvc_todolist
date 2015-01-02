@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class ToDoService {
-    private List<ToDo> toDoList = new ArrayList<ToDo>();
+
     ToDoDao toDoDao;
 
     public ToDoService() throws Exception {
@@ -23,6 +23,7 @@ public class ToDoService {
     }
 
     public List<ToDo> getAll() throws Exception {
+        List<ToDo> toDoList = new ArrayList<ToDo>();
         ResultSet resultSet = toDoDao.getAll();
         while (resultSet.next()) {
             toDoList.add(new ToDo(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3)));
