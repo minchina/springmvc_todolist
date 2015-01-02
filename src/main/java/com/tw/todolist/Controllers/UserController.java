@@ -6,6 +6,7 @@ import com.tw.todolist.Models.ToDo;
 import com.tw.todolist.Models.User;
 import com.tw.todolist.Services.ToDoService;
 import com.tw.todolist.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,10 +25,13 @@ import java.util.List;
 @RequestMapping("/users")
 
 public class UserController {
+    
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String showAllUsers(ModelMap model, @ModelAttribute("user") String user) throws Exception {
-        List<User> allUsers = new UserService().getAll();
+        List<User> allUsers = userService.getAll();
         model.addAttribute("allUsers", allUsers);
         return "userlist";
     }
@@ -37,7 +41,7 @@ public class UserController {
         PrintWriter printWriter = response.getWriter();
         String userName = request.getParameter("user_name");
 
-        User user = new UserService().add(new User(userName));
+        User user = userService.add(new User(userName));
         String jsonUser = JSON.toJSONString(user);
         printWriter.write(jsonUser);
     }
@@ -49,13 +53,13 @@ public class UserController {
         Integer userId = Integer.valueOf(request.getParameter("user_id"));
 
         User user = new User(userId, userName);
-        new UserService().delete(user);
+        userService.delete(user);
         printWriter.write("success");
     }
 
     @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
     private String showUserToDos(@PathVariable("userName") String userName, ModelMap modelMap) throws Exception {
-        User user = new UserService().findUserByName(userName);
+        User user = userService.findUserByName(userName);
         List<ToDo> userToDoList = new ToDoService().getToDoListByUserId(user.getId());
         modelMap.addAttribute("userId", user.getId());
         modelMap.addAttribute("userToDoList", userToDoList);

@@ -12,4 +12,8 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    
+    <bean id="toDoService" class="com.tw.todolist.Services.ToDoService"></bean>
+
+    <bean id="userService" class="com.tw.todolist.Services.UserService"></bean>
 </beans>

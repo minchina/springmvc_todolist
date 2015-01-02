@@ -4,6 +4,7 @@ package com.tw.todolist.Controllers;
 import com.alibaba.fastjson.JSON;
 import com.tw.todolist.Models.ToDo;
 import com.tw.todolist.Services.ToDoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,12 @@ import java.util.List;
 public class ToDoController {
 
 
+    @Autowired
+    private ToDoService toDoService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String showAllToDos(ModelMap modelMap) throws Exception {
-        List<ToDo> allToDos = new ToDoService().getAll();
+        List<ToDo> allToDos = toDoService.getAll();
         modelMap.addAttribute("allToDos", allToDos);
         return "index";
     }
@@ -36,7 +40,7 @@ public class ToDoController {
         Integer done = 0;
 
         ToDo toDo = new ToDo(toDoId, name, userId, done);
-        toDo = new ToDoService().add(toDo, userId);
+        toDo = toDoService.add(toDo, userId);
 
         String jsonToDo = JSON.toJSONString(toDo);
         printWriter.print(jsonToDo);
@@ -46,7 +50,7 @@ public class ToDoController {
     public void deleteToDo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         Integer id = Integer.valueOf(request.getParameter("id"));
-        new ToDoService().delete(id);
+        toDoService.delete(id);
     }
 
     @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
@@ -56,6 +60,6 @@ public class ToDoController {
         Integer status = Integer.valueOf(request.getParameter("status"));
 
         ToDo toDo = new ToDo(id, name, 0, status);
-        new ToDoService().update(toDo);
+        toDoService.update(toDo);
     }
 }
