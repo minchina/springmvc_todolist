@@ -6,17 +6,16 @@ import com.tw.todolist.Models.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoDao extends Dao {
 
 
-    public ToDoDao() throws SQLException {
+    public ToDoDao() throws Exception {
     }
 
-    public void update(ToDo toDo) throws SQLException {
+    public void update(ToDo toDo) throws Exception {
         Integer id = toDo.getId();
         String name = toDo.getName();
         Integer status = toDo.getDone();
@@ -30,7 +29,7 @@ public class ToDoDao extends Dao {
         close();
     }
 
-    public ToDo add(ToDo toDo, User user) throws SQLException, ClassNotFoundException {
+    public ToDo add(ToDo toDo, User user) throws Exception {
         String name = toDo.getName();
         int done = toDo.getDone();
         Integer userId = user.getId();
@@ -44,19 +43,19 @@ public class ToDoDao extends Dao {
         return findLastTodo();
     }
 
-    public ResultSet getAll() throws SQLException, ClassNotFoundException {
+    public ResultSet getAll() throws Exception{
         PreparedStatement allToDos = connection.prepareStatement(" select * from list ");
         return allToDos.executeQuery();
     }
 
-    public void remove(Integer id) throws SQLException, ClassNotFoundException {
+    public void remove(Integer id) throws Exception {
         PreparedStatement removeSql = connection.prepareStatement("delete from list where id = ?");
         removeSql.setInt(1, id);
         removeSql.execute();
         close();
     }
 
-    public List<ToDo> getToDoListByUserId(int userId) throws SQLException {
+    public List<ToDo> getToDoListByUserId(int userId) throws Exception {
         List<ToDo> toDoList = new ArrayList<ToDo>();
         PreparedStatement userSet = connection.prepareStatement("select * from list where userid = ? ");
         userSet.setInt(1, userId);
@@ -69,7 +68,7 @@ public class ToDoDao extends Dao {
 
     }
 
-    public ToDo findLastTodo() throws SQLException {
+    public ToDo findLastTodo() throws Exception {
         ToDo toDo = null;
         PreparedStatement lastToDo = connection.prepareStatement("SELECT * from list where id = (SELECT max(id) FROM list)");
         ResultSet resultSet = lastToDo.executeQuery();

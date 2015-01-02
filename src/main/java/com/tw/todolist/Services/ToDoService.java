@@ -5,7 +5,6 @@ import com.tw.todolist.Models.ToDo;
 import com.tw.todolist.Models.User;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +13,16 @@ public class ToDoService {
     private List<ToDo> toDoList = new ArrayList<ToDo>();
     ToDoDao toDoDao;
 
-    public ToDoService() throws SQLException {
+    public ToDoService() throws Exception {
         toDoDao = new ToDoDao();
     }
 
-    public ToDo add(ToDo toDo,Integer userId) throws SQLException, ClassNotFoundException {
+    public ToDo add(ToDo toDo,Integer userId) throws Exception {
         User user = new UserService().findUserById(userId);
         return toDoDao.add(toDo,user);
     }
 
-    public List<ToDo> getAll() throws SQLException, ClassNotFoundException {
+    public List<ToDo> getAll() throws Exception {
         ResultSet resultSet = toDoDao.getAll();
         while (resultSet.next()) {
             toDoList.add(new ToDo(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3)));
@@ -31,15 +30,15 @@ public class ToDoService {
         return toDoList;
     }
 
-    public void delete(Integer id) throws SQLException, ClassNotFoundException {
+    public void delete(Integer id) throws Exception{
         toDoDao.remove(id);
     }
 
-    public void update(ToDo toDo) throws SQLException {
+    public void update(ToDo toDo) throws Exception {
         toDoDao.update(toDo);
     }
 
-    public List<ToDo> getToDoListByUserId(int userId) throws SQLException {
+    public List<ToDo> getToDoListByUserId(int userId) throws Exception{
         return toDoDao.getToDoListByUserId(userId);
     }
 }

@@ -2,7 +2,6 @@ package com.tw.todolist.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Dao {
@@ -13,21 +12,16 @@ public class Dao {
     Connection connection = getConnection();
     Statement statement;
 
-    public Dao() throws SQLException {
+    public Dao() throws Exception {
         statement = connection.createStatement();
     }
 
-    public static Connection getConnection() {
-        try {
+    public static Connection getConnection() throws Exception{
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
-    public void close() throws SQLException {
+    public void close() throws Exception {
         connection.close();
         statement.close();
     }

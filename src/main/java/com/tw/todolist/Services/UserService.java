@@ -2,8 +2,6 @@ package com.tw.todolist.Services;
 
 import com.tw.todolist.Dao.UserDao;
 import com.tw.todolist.Models.User;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
@@ -11,11 +9,11 @@ public class UserService {
 
     UserDao userDao;
 
-    public UserService() throws SQLException {
+    public UserService() throws Exception {
         userDao = new UserDao();
     }
 
-    public User add(User user) throws SQLException, ClassNotFoundException {
+    public User add(User user) throws Exception {
         return userDao.add(user);
     }
 
@@ -23,15 +21,15 @@ public class UserService {
         return userDao.getAll();
     }
 
-    public User findUserByName(String name) throws SQLException {
+    public User findUserByName(String name) throws Exception{
         return userDao.findUserByName(name);
     }
 
-    public User findUserById(Integer id) throws SQLException {
+    public User findUserById(Integer id) throws Exception {
         return userDao.findUserById(id);
     }
 
-    public void delete(User user) throws SQLException {
+    public void delete(User user) throws Exception {
         userDao.delete(user);
     }
 }
