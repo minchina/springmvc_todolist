@@ -20,11 +20,10 @@ $(window).ready(function(){
 
     $(".destroy").on("click",function(){
         var $li = $(this).closest("li");
-        var data_id = $li.data().id;
-        console.log(data_id);
+        var user_id = $li.data().id;
         $.ajax({
-            url:"/todolist_v1/delete",
-            data:{id:data_id},
+            url:"/todo/delete",
+            data:{id:user_id},
             type:"POST",
             success:function(){
                 $li.remove();

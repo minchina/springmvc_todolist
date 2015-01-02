@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -41,4 +42,12 @@ public class ToDoController {
         String jsonToDo = JSON.toJSONString(toDo);
         printWriter.print(jsonToDo);
     }
+    
+    @RequestMapping(value = "todo/delete", method = RequestMethod.POST)
+    public void deleteToDo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        new ToDoService().delete(id);
+    }
+    
 }
