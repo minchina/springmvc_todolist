@@ -21,9 +21,9 @@
 <section id="main" style="display: block;">
     <ul id="todo-list">
         <c:forEach items="${allUsers}" var="User">
-            <li data-id="${User.id}" }>
+            <li data-id="${User.id}">
                 <div class="view">
-                    <a href="user/${User.name}/todos">${User.name}</a>
+                    <a href="users/${User.name}/todos">${User.name}</a>
                     <button class="destroy"></button>
                 </div>
             </li>

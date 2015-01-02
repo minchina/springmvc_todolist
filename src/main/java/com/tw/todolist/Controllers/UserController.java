@@ -2,11 +2,14 @@ package com.tw.todolist.Controllers;
 
 
 import com.alibaba.fastjson.JSON;
+import com.tw.todolist.Models.ToDo;
 import com.tw.todolist.Models.User;
+import com.tw.todolist.Services.ToDoService;
 import com.tw.todolist.Services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,20 +36,31 @@ public class UserController {
     private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PrintWriter printWriter = response.getWriter();
         String userName = request.getParameter("user_name");
-        
+
         User user = new UserService().add(new User(userName));
         String jsonUser = JSON.toJSONString(user);
         printWriter.write(jsonUser);
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    private void deleteUser(HttpServletRequest request ,HttpServletResponse response) throws Exception {
-        PrintWriter printWriter =response.getWriter();
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PrintWriter printWriter = response.getWriter();
         String userName = request.getParameter("user_name");
         Integer userId = Integer.valueOf(request.getParameter("user_id"));
-        
-        User user = new User(userId,userName);
+
+        User user = new User(userId, userName);
         new UserService().delete(user);
         printWriter.write("success");
     }
+
+    @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
+    private String showUserToDos(@PathVariable("userName") String userName, ModelMap modelMap) throws Exception {
+
+        User user = new UserService().findUserByName(userName);
+        List<ToDo> userToDoList = new ToDoService().getToDoListByUserId(user.getId());
+        modelMap.addAttribute("userId", user.getId());
+        modelMap.addAttribute("userToDoList", userToDoList);
+        return "usertodolist";
+    }
+
 }
