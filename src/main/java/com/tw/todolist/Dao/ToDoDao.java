@@ -25,8 +25,6 @@ public class ToDoDao extends Dao {
         updateUser.setString(2, name);
         updateUser.setInt(3, id);
         updateUser.executeUpdate();
-
-        close();
     }
 
     public ToDo add(ToDo toDo, User user) throws Exception {
@@ -52,7 +50,6 @@ public class ToDoDao extends Dao {
         PreparedStatement removeSql = connection.prepareStatement("delete from list where id = ?");
         removeSql.setInt(1, id);
         removeSql.execute();
-        close();
     }
 
     public List<ToDo> getToDoListByUserId(int userId) throws Exception {
