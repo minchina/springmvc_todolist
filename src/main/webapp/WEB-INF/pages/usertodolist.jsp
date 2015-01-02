@@ -5,13 +5,14 @@
 <html>
 <head>
     <title>TODO主页</title>
-    <link rel="stylesheet" type="text/css" href="http://localhost:8888/static/bower_components/todomvc-common/base.css">
-    <link rel="stylesheet" href="http://localhost:8888/static/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/todomvc-common/base.css">
+    <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
 
 <header id="header">
     <h1>todos</h1>
+    <a href="/users" class="btn btn-primary btn-lg" role="button">用户列表</a>
     <input id="new-todo" placeholder="What needs to be done?" autofocus="">
     <input id="user_id" hidden="hidden" value="${userId}">
 </header>
@@ -31,8 +32,8 @@
         </c:forEach>
     </ul>
 </section>
-<script  src="http://localhost:8888/static/bower_components/jquery/dist/jquery.js"  ></script>
-<script  src="http://localhost:8888/static/js/todolist.js"></script>
+<script  src="/static/bower_components/jquery/dist/jquery.js"  ></script>
+<script  src="/static/js/todolist.js"></script>
 
 </body>
 </html>
