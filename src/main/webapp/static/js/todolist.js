@@ -5,7 +5,7 @@ $(window).ready(function(){
             var name = THIS.val();
             var user_id = $("#user_id").val();
             $.ajax({
-                url:"/todolist_v1/add",
+                url:"/todo/add",
                 data:{name:name,user_id:user_id},
                 type:"POST",
                 success:function(json_todo){

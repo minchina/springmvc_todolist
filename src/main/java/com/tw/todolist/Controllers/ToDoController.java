@@ -26,7 +26,7 @@ public class ToDoController {
         return "index";
     }
     
-    @RequestMapping(value = "/todolist_v1/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/todo/add", method = RequestMethod.POST)
     public void addToDo(HttpServletRequest request, HttpServletResponse response) throws Exception{
         PrintWriter printWriter = response.getWriter();
 
@@ -37,7 +37,7 @@ public class ToDoController {
 
         ToDo toDo = new ToDo(toDoId,name,userId,done);
         toDo = new ToDoService().add(toDo, userId);
-
+        
         String jsonToDo = JSON.toJSONString(toDo);
         printWriter.print(jsonToDo);
     }

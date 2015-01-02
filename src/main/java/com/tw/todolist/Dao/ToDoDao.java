@@ -69,10 +69,9 @@ public class ToDoDao extends Dao {
 
     }
 
-    //这里应该还有问题.
     public ToDo findLastTodo() throws SQLException {
         ToDo toDo = null;
-        PreparedStatement lastToDo = connection.prepareStatement("SELECT * FROM list WHERE id = (SELECT MAX (id) FROM list)");
+        PreparedStatement lastToDo = connection.prepareStatement("SELECT * from list where id = (SELECT max(id) FROM list)");
         ResultSet resultSet = lastToDo.executeQuery();
         while (resultSet.next()) {
             toDo = new ToDo(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(4), resultSet.getInt(3));

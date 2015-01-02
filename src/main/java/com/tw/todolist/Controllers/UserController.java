@@ -55,7 +55,6 @@ public class UserController {
 
     @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
     private String showUserToDos(@PathVariable("userName") String userName, ModelMap modelMap) throws Exception {
-
         User user = new UserService().findUserByName(userName);
         List<ToDo> userToDoList = new ToDoService().getToDoListByUserId(user.getId());
         modelMap.addAttribute("userId", user.getId());
