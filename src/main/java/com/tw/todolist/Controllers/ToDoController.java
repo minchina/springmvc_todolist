@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.List;
@@ -31,11 +31,9 @@ public class ToDoController {
     }
 
     @RequestMapping(value = "/todo/add", method = RequestMethod.POST)
-    public void addToDo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void addToDo(@RequestParam("name") String name, @RequestParam("user_id") Integer userId,
+                        HttpServletResponse response) throws Exception {
         PrintWriter printWriter = response.getWriter();
-
-        String name = request.getParameter("name");
-        Integer userId = Integer.valueOf(request.getParameter("user_id"));
         Integer toDoId = 0;
         Integer done = 0;
 
@@ -47,17 +45,13 @@ public class ToDoController {
     }
 
     @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
-    public void deleteToDo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        Integer id = Integer.valueOf(request.getParameter("id"));
+    public void deleteToDo(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception {
         toDoService.delete(id);
     }
 
     @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
-    public void updateToDoStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Integer id = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("name");
-        Integer status = Integer.valueOf(request.getParameter("status"));
+    public void updateToDoStatus(@RequestParam("id") Integer id, @RequestParam("name") String name, 
+                                 @RequestParam("status") Integer status, HttpServletResponse response) throws Exception {
 
         ToDo toDo = new ToDo(id, name, 0, status);
         toDoService.update(toDo);
