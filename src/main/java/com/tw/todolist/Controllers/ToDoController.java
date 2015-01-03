@@ -36,16 +36,12 @@ public class ToDoController {
     public void addToDo(@RequestParam("name") String name, @RequestParam("user_id") Integer userId,
                         HttpServletResponse response) throws Exception {
         PrintWriter printWriter = response.getWriter();
-        Integer toDoId = 0;
-        Integer done = 0;
-
-        ToDo toDo = new ToDo(toDoId, name, userId, done);
+        ToDo toDo = createToDoByUserId(name, userId);
         toDo = toDoService.add(toDo, userId);
 
-        String jsonToDo = JSON.toJSONString(toDo);
-        printWriter.print(jsonToDo);
+        printWriter.print(JSON.toJSONString(toDo));
     }
-
+    
     @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
     public void deleteToDo(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception {
         toDoService.delete(id);
@@ -57,5 +53,12 @@ public class ToDoController {
 
         ToDo toDo = new ToDo(id, name, 0, status);
         toDoService.update(toDo);
+    }
+
+    private ToDo createToDoByUserId(String name, Integer userId) {
+        Integer toDoId = 0;
+        Integer done = 0;
+
+        return new ToDo(toDoId, name, userId, done);
     }
 }
