@@ -25,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String showAllUsers(ModelMap model, @ModelAttribute("user") String user) throws Exception {
+    public String showAllUsers(ModelMap model) throws Exception {
         
         List<User> allUsers = userService.getAll();
         model.addAttribute("allUsers", allUsers);
@@ -41,11 +41,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    private void deleteUser(@RequestParam("user_name") String userName, @RequestParam("user_id") Integer userId, HttpServletResponse response) throws Exception {
+    private void deleteUser(@RequestParam("user_id") Integer userId, HttpServletResponse response) throws Exception {
         
         PrintWriter printWriter = response.getWriter();
-        User user = new User(userId, userName);
-        userService.delete(user);
+        userService.delete(userId);
         printWriter.write("success");
     }
 

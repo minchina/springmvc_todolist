@@ -29,7 +29,7 @@ public class UserService {
         return userDao.findUserById(id);
     }
 
-    public void delete(User user) throws Exception {
-        userDao.delete(user);
+    public void delete(Integer id) throws Exception {
+        userDao.delete(id);
     }
 }
