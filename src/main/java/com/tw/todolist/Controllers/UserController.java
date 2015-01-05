@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
@@ -49,13 +50,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
-    private String showUserToDos(@PathVariable("userName") String userName, ModelMap modelMap) throws Exception {
+    private ModelAndView showUserToDos(@PathVariable("userName") String userName, ModelAndView modelAndView) throws Exception {
+        
         User user = userService.findUserByName(userName);
         List<ToDo> userToDoList = new ToDoService().getToDoListByUserId(user.getId());
+        modelAndView.addObject("userId",user.getId());
+        modelAndView.addObject("userToDoList",userToDoList);
+        modelAndView.setViewName("usertodolist");
         
-        modelMap.addAttribute("userId", user.getId());
-        modelMap.addAttribute("userToDoList", userToDoList);
-        return "usertodolist";
+        return modelAndView;
+        
     }
 
 }
