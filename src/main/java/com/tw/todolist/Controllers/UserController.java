@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     private void addUser(@RequestParam("user_name") String userName, HttpServletResponse response) throws Exception {
-        
+
         PrintWriter printWriter = response.getWriter();
         User user = userService.add(new User(userName));
         printWriter.write(JSON.toJSONString(user));
@@ -43,12 +43,12 @@ public class UserController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     private void deleteUser(@RequestParam("user_id") Integer userId, HttpServletResponse response) throws Exception {
-        
+
         PrintWriter printWriter = response.getWriter();
         userService.delete(userId);
         printWriter.write("success");
     }
-
+    
     @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
     private ModelAndView showUserToDos(@PathVariable("userName") String userName, ModelAndView modelAndView) throws Exception {
         

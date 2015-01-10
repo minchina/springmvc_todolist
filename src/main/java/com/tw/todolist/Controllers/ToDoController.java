@@ -50,7 +50,6 @@ public class ToDoController {
     @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
     public void updateToDoStatus(@RequestParam("id") Integer id, @RequestParam("name") String name, 
                                  @RequestParam("status") Integer status, HttpServletResponse response) throws Exception {
-
         ToDo toDo = new ToDo(id, name, 0, status);
         toDoService.update(toDo);
     }

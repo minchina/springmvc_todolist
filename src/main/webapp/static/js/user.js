@@ -9,6 +9,7 @@ $(document).ready(function(){
             data:{user_name:user_name},
             type:"POST",
             success:function(json_user){
+                console.log(json_user);
                var user = JSON.parse(json_user);
                var $user_list = $("#todo-list");
                $user_list.append(concatString(user.name,user.id));
