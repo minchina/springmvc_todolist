@@ -12,7 +12,7 @@
 
 <header id="header">
   <h1>ToDos</h1>
-  <a href="users" class="btn btn-primary btn-lg" role="button">用户列表</a>
+  <a href="users" class="btn btn-primary btn-sm" role="button">用户列表</a>
 </header>
 
 <section id="main" style="display: block;">
