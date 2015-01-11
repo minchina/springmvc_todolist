@@ -1,7 +1,7 @@
 package com.tw.todolist.Dao;
 
 
-import com.tw.todolist.Models.User;
+import com.tw.todolist.Domain.User;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

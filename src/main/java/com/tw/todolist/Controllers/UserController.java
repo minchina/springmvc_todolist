@@ -2,8 +2,8 @@ package com.tw.todolist.Controllers;
 
 
 import com.alibaba.fastjson.JSON;
-import com.tw.todolist.Models.ToDo;
-import com.tw.todolist.Models.User;
+import com.tw.todolist.Domain.ToDo;
+import com.tw.todolist.Domain.User;
 import com.tw.todolist.Services.ToDoService;
 import com.tw.todolist.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

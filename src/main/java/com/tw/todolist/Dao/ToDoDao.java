@@ -1,8 +1,8 @@
 package com.tw.todolist.Dao;
 
 
-import com.tw.todolist.Models.ToDo;
-import com.tw.todolist.Models.User;
+import com.tw.todolist.Domain.ToDo;
+import com.tw.todolist.Domain.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,7 +1,7 @@
 package com.tw.todolist.Services;
 
 import com.tw.todolist.Dao.UserDao;
-import com.tw.todolist.Models.User;
+import com.tw.todolist.Domain.User;
 import java.util.List;
 
 public class UserService {

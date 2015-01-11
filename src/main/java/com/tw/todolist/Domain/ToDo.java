@@ -1,4 +1,4 @@
-package com.tw.todolist.Models;
+package com.tw.todolist.Domain;
 
 public class ToDo {
     private int id;
