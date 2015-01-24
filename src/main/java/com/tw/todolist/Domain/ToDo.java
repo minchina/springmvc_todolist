@@ -1,39 +1,28 @@
 package com.tw.todolist.Domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "todo")
 public class ToDo {
-    private int id;
+
+
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(name = "name")
     private String name;
-    private int done;
-    private int userId;
 
-    public ToDo(int id, String name, int userId , int done) {
-        this.id = id;
-        this.name = name;
-        this.done = done;
-        this.userId = userId;
-    }
+    @Column(name = "userid")
+    private Long userId;
 
-    public int getDone() {
-        return done;
-    }
-
-    public void setDone(int done) {
-        this.done = done;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -43,5 +32,13 @@ public class ToDo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
