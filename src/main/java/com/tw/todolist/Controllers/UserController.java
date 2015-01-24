@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,21 +30,20 @@ public class UserController {
         return "userlist";
     }
 
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    private void addUser(@RequestParam("user_name") String userName, HttpServletResponse response) throws Exception {
-//
-//        PrintWriter printWriter = response.getWriter();
-//        User user = userService.add(new User(userName));
-//        printWriter.write(JSON.toJSONString(user));
-//    }
-//
-//    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-//    private void deleteUser(@RequestParam("user_id") Integer userId, HttpServletResponse response) throws Exception {
-//
-//        PrintWriter printWriter = response.getWriter();
-//        userService.delete(userId);
-//        printWriter.write("success");
-//    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public User addUser(@RequestParam("user_name") User newUser) throws Exception {
+
+        return userService.save(newUser);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    private String deleteUser(@RequestParam("user_id") Long id) throws Exception {
+
+        userService.deleteById(id);
+        return "redirect:/users";
+    }
 //
 //    @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
 //    private ModelAndView showUserToDos(@PathVariable("userName") String userName, ModelAndView modelAndView) throws Exception {
