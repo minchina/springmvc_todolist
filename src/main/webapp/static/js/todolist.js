@@ -9,9 +9,8 @@ $(window).ready(function(){
                 data:{name:name,user_id:user_id},
                 type:"POST",
                 success:function(json_todo){
-                    var todo = JSON.parse(json_todo);
                     var target = $("#todo-list");
-                    target.append(concatString(todo.id,todo.name));
+                    target.append(concatString(json_todo.id,json_todo.name));
                     THIS.val("");
                 }
             })
@@ -50,11 +49,14 @@ $(window).ready(function(){
         var data_id = $li.data("id");
         var $label = $li.find("label");
         var $check_box = $li.find(".toggle");
+        var user_id = $("#user_id").val();
         console.log(data_id,name,is_checked($check_box));
         $.ajax({
             url:"/todo/update",
-            data:{id:data_id,name:name,status:is_checked($check_box)},
+            data:JSON.stringify({id:data_id,name:name,userId:user_id,complete:is_checked($check_box)}),
             type:"POST",
+            contentType:'application/json;charset=UTF-8',
+            dataType: 'json',
             success:function(){
                 $label.text(name);
                 $li.removeClass("editing");
@@ -78,21 +80,23 @@ $(window).ready(function(){
         var $li = $check_box.closest("li");
         var data_id = $li.data("id");
         var name = $li.find(".edit").val();
+        var user_id = $("#user_id").val();
         $.ajax({
             url:"/todo/update",
-            data:{id:data_id,name:name,status:is_checked($check_box)},
+            data:JSON.stringify({id:data_id,name:name,userId:user_id,complete:is_checked($check_box)}),
             type:"POST",
-            success:function(){
+            contentType:'application/json;charset=UTF-8',
+            dataType: 'json',
+            success:function(data){
+                console.log(123);
                 $check_box.closest("li").toggleClass("completed");
             }
         })
     }
 
     function is_checked($check_box){
-        if($check_box.prop("checked")){
-            return 1
-        }
-        return 0;
+        return $check_box.prop("checked");
+
 
     }
 });

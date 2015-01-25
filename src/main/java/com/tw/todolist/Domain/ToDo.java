@@ -1,39 +1,40 @@
 package com.tw.todolist.Domain;
 
-public class ToDo {
-    private int id;
-    private String name;
-    private int done;
-    private int userId;
+import javax.persistence.*;
 
-    public ToDo(int id, String name, int userId , int done) {
-        this.id = id;
+@Entity
+@Table(name = "todo")
+public class ToDo {
+
+
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "userid")
+    private Long userId;
+
+    @Column(name = "complete")
+    private boolean complete = false;
+
+    public ToDo(){
+
+    }
+
+    public ToDo(String name, Long userId){
         this.name = name;
-        this.done = done;
         this.userId = userId;
     }
 
-    public int getDone() {
-        return done;
-    }
-
-    public void setDone(int done) {
-        this.done = done;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -43,5 +44,21 @@ public class ToDo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

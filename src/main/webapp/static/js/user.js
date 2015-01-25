@@ -9,8 +9,7 @@ $(document).ready(function(){
             data:{user_name:user_name},
             type:"POST",
             success:function(json_user){
-                console.log(json_user);
-               var user = JSON.parse(json_user);
+               var user = json_user;
                var $user_list = $("#todo-list");
                $user_list.append(concatString(user.name,user.id));
                $name_input.val("");
@@ -22,10 +21,9 @@ $(document).ready(function(){
     $(".destroy").on("click",function(){
         var $li = $(this).closest("li");
         var user_id = $li.data("id");
-        var user_name = $li.find("a").text();
         $.ajax({
             url:"/users/delete",
-            data:{user_id:user_id,user_name:user_name},
+            data:{user_id:user_id},
             type:"POST",
             success:function(){
                 $li.remove();
@@ -35,7 +33,7 @@ $(document).ready(function(){
 
    function concatString(user_name,user_id){
       var expectString =
-        "<li data-id="+user_id+"}>"+
+        "<li data-id="+user_id+">"+
             "<div class='view'>"+
             "<a href='users/"+user_name+"/todos'>"+user_name+"</a>"+
             '<button class="destroy"></button>'+

@@ -1,19 +1,15 @@
 package com.tw.todolist.Controllers;
 
 
-import com.alibaba.fastjson.JSON;
 import com.tw.todolist.Domain.ToDo;
 import com.tw.todolist.Domain.User;
-import com.tw.todolist.Services.ToDoService;
-import com.tw.todolist.Services.UserService;
+import com.tw.todolist.service.ToDoService;
+import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -21,45 +17,49 @@ import java.util.List;
 @RequestMapping("/users")
 
 public class UserController {
-    
+
     @Autowired
-    private UserService userService;
+    UserService userService;
+
+    @Autowired
+    ToDoService toDoService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String showAllUsers(ModelMap model) throws Exception {
-        
-        List<User> allUsers = userService.getAll();
-        model.addAttribute("allUsers", allUsers);
-        return "userlist";
+    public ModelAndView showAllUsers(){
+
+        List<User> allUsers = userService.findAllUsers();
+
+        ModelAndView modelAndView = new ModelAndView("userList");
+        modelAndView.addObject("allUsers", allUsers);
+        return modelAndView;
+
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    private void addUser(@RequestParam("user_name") String userName, HttpServletResponse response) throws Exception {
+    @ResponseBody
+    public User addUser(@RequestParam("user_name") User newUser){
 
-        PrintWriter printWriter = response.getWriter();
-        User user = userService.add(new User(userName));
-        printWriter.write(JSON.toJSONString(user));
+        return userService.save(newUser);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    private void deleteUser(@RequestParam("user_id") Integer userId, HttpServletResponse response) throws Exception {
+    @ResponseBody
+    private Long deleteUser(@RequestParam("user_id") Long id) throws Exception {
 
-        PrintWriter printWriter = response.getWriter();
-        userService.delete(userId);
-        printWriter.write("success");
+        userService.deleteById(id);
+        return id;
     }
-    
-    @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
-    private ModelAndView showUserToDos(@PathVariable("userName") String userName, ModelAndView modelAndView) throws Exception {
-        
-        User user = userService.findUserByName(userName);
-        List<ToDo> userToDoList = new ToDoService().getToDoListByUserId(user.getId());
-        modelAndView.addObject("userId",user.getId());
-        modelAndView.addObject("userToDoList",userToDoList);
-        modelAndView.setViewName("usertodolist");
-        
+
+    @RequestMapping(value = "/{userName}/toDos", method = RequestMethod.GET)
+    private ModelAndView showUserToDos(@PathVariable("userName") String name){
+
+        User user = userService.findByName(name);
+        ModelAndView modelAndView = new ModelAndView("userToDoList");
+        List<ToDo> userToDoLists = toDoService.findByUserId(user.getId());
+        modelAndView.addObject("userToDoList", userToDoLists);
+        modelAndView.addObject("userId", user.getId());
         return modelAndView;
-        
+
     }
 
 }

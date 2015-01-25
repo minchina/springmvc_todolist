@@ -19,8 +19,8 @@
   <ul id="todo-list">
 
     <c:forEach items="${allToDos}" var="toDo">
-      <li data-id="${toDo.id}" ${toDo.done==1? "class='completed'":""}>
-        <input class="hidden" value="${toDo.done}">
+      <li data-id="${toDo.id}" ${toDo.complete==true? "class='completed'":""}>
+        <input class="hidden" value="${toDo.complete}">
         <div class="view">
           <label>${toDo.name}</label>
           <button class="destroy"></button>
