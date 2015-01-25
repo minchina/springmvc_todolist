@@ -23,7 +23,7 @@
         <c:forEach items="${allUsers}" var="User">
             <li data-id="${User.id}">
                 <div class="view">
-                    <a href="users/${User.name}/todos">${User.name}</a>
+                    <a href="users/${User.name}/toDos">${User.name}</a>
                     <button class="destroy"></button>
                 </div>
             </li>

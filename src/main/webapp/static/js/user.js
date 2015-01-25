@@ -33,7 +33,7 @@ $(document).ready(function(){
 
    function concatString(user_name,user_id){
       var expectString =
-        "<li data-id="+user_id+"}>"+
+        "<li data-id="+user_id+">"+
             "<div class='view'>"+
             "<a href='users/"+user_name+"/todos'>"+user_name+"</a>"+
             '<button class="destroy"></button>'+

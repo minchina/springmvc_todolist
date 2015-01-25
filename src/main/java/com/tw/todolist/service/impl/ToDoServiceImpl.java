@@ -13,8 +13,14 @@ public class ToDoServiceImpl implements ToDoService {
 
     @Autowired
     ToDoRepository toDoRepository;
+
     @Override
     public List<ToDo> findAllToDos() {
         return toDoRepository.findAll();
+    }
+
+    @Override
+    public List<ToDo> findByUserId(Long id) {
+        return toDoRepository.findByUserId(id);
     }
 }
