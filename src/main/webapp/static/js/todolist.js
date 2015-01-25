@@ -88,7 +88,7 @@ $(window).ready(function(){
             contentType:'application/json;charset=UTF-8',
             dataType: 'json',
             success:function(data){
-                console.log(data);
+                console.log(123);
                 $check_box.closest("li").toggleClass("completed");
             }
         })

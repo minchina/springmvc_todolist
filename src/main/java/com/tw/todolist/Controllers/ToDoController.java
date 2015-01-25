@@ -4,6 +4,7 @@ package com.tw.todolist.Controllers;
 import com.tw.todolist.Domain.ToDo;
 import com.tw.todolist.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,15 +37,20 @@ public class ToDoController {
     }
 
     @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
-    public String deleteToDo(@RequestParam("id") Long id)  {
-        System.out.println(id);
+    @ResponseBody
+    public Long deleteToDo(@RequestParam("id") Long id)  {
+
         toDoService.deleteById(id);
-        return "redirect:/users";
+        return id;
+
     }
 
     @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
-    public String updateToDoStatus(@RequestBody final ToDo toDo){
+    @ResponseBody
+    public ToDo updateToDoStatus(@RequestBody final ToDo toDo){
+
         toDoService.updateToDo(toDo);
-        return "redirect:/users";
+        return toDo;
+
     }
 }
