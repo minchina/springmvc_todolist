@@ -28,4 +28,9 @@ public class ToDoServiceImpl implements ToDoService {
     public ToDo save(ToDo toDo) {
         return toDoRepository.save(toDo);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        toDoRepository.deleteById(id);
+    }
 }

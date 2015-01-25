@@ -11,4 +11,6 @@ public interface ToDoService {
     List<ToDo> findByUserId(Long id);
 
     ToDo save(ToDo toDo);
+
+    void deleteById(Long id);
 }

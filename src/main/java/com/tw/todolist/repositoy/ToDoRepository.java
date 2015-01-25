@@ -13,4 +13,6 @@ import java.util.List;
 public interface ToDoRepository extends JpaRepository<ToDo, Long>{
 
     List<ToDo> findByUserId(Long userId);
+
+    void deleteById(Long id);
 }
