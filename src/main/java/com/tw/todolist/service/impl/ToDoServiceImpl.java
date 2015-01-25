@@ -33,4 +33,10 @@ public class ToDoServiceImpl implements ToDoService {
     public void deleteById(Long id) {
         toDoRepository.deleteById(id);
     }
+
+    @Override
+    public void updateToDo(ToDo toDo) {
+
+        toDoRepository.updateToDo(toDo.getId(),toDo.getName(),toDo.isComplete());
+    }
 }

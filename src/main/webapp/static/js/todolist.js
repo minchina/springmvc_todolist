@@ -49,11 +49,14 @@ $(window).ready(function(){
         var data_id = $li.data("id");
         var $label = $li.find("label");
         var $check_box = $li.find(".toggle");
+        var user_id = $("#user_id").val();
         console.log(data_id,name,is_checked($check_box));
         $.ajax({
             url:"/todo/update",
-            data:{id:data_id,name:name,complete:is_checked($check_box),userId:123},
+            data:JSON.stringify({id:data_id,name:name,userId:user_id,complete:is_checked($check_box)}),
             type:"POST",
+            contentType:'application/json;charset=UTF-8',
+            dataType: 'json',
             success:function(){
                 $label.text(name);
                 $li.removeClass("editing");
@@ -77,13 +80,15 @@ $(window).ready(function(){
         var $li = $check_box.closest("li");
         var data_id = $li.data("id");
         var name = $li.find(".edit").val();
+        var user_id = $("#user_id").val();
         $.ajax({
             url:"/todo/update",
-            data:JSON.stringify({id:data_id,name:name,userId:123,complete:is_checked($check_box)}),
+            data:JSON.stringify({id:data_id,name:name,userId:user_id,complete:is_checked($check_box)}),
             type:"POST",
             contentType:'application/json;charset=UTF-8',
             dataType: 'json',
-            success:function(){
+            success:function(data){
+                console.log(data);
                 $check_box.closest("li").toggleClass("completed");
             }
         })

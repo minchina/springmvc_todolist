@@ -43,17 +43,8 @@ public class ToDoController {
     }
 
     @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
-    public void updateToDoStatus(@RequestBody final ToDo toDo){
-        System.out.println(toDo.getName());
-        System.out.println(toDo.getId());
-        System.out.println(toDo.getUserId());
-        System.out.println(toDo.isComplete());
+    public String updateToDoStatus(@RequestBody final ToDo toDo){
+        toDoService.updateToDo(toDo);
+        return "redirect:/users";
     }
-//
-//    private ToDo createToDoByUserId(String name, Integer userId) {
-//        Integer toDoId = 0;
-//        Integer done = 0;
-//
-//        return new ToDo(toDoId, name, userId, done);
-//    }
 }

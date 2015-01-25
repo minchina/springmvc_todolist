@@ -13,4 +13,7 @@ public interface ToDoService {
     ToDo save(ToDo toDo);
 
     void deleteById(Long id);
+
+    void updateToDo(ToDo toDo);
+
 }
