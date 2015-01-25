@@ -20,10 +20,10 @@
 <section id="main" style="display: block;">
     <ul id="todo-list">
         <c:forEach items="${userToDoList}" var="toDo">
-            <li data-id="${toDo.id}" ${toDo.done==1? "class='completed'":""}>
-                <input class="hidden" value="${toDo.done}">
+            <li data-id="${toDo.id}" ${toDo.complete==true? "class='completed'":""}>
+                <input class="hidden" value="${toDo.complete}">
                 <div class="view">
-                    <input class="toggle" type="checkbox" ${toDo.done==1?"checked":""}>
+                    <input class="toggle" type="checkbox" ${toDo.complete==true?"checked":""}>
                     <label>${toDo.name}</label>
                     <button class="destroy"></button>
                 </div>

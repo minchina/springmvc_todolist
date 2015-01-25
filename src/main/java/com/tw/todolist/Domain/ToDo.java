@@ -18,6 +18,18 @@ public class ToDo {
     @Column(name = "userid")
     private Long userId;
 
+    @Column(name = "complete")
+    private boolean complete = false;
+
+    public ToDo(){
+
+    }
+
+    public ToDo(String name, Long userId){
+        this.name = name;
+        this.userId = userId;
+    }
+
     public long getId() {
         return id;
     }
@@ -40,5 +52,13 @@ public class ToDo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

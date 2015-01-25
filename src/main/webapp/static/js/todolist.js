@@ -9,9 +9,8 @@ $(window).ready(function(){
                 data:{name:name,user_id:user_id},
                 type:"POST",
                 success:function(json_todo){
-                    var todo = JSON.parse(json_todo);
                     var target = $("#todo-list");
-                    target.append(concatString(todo.id,todo.name));
+                    target.append(concatString(json_todo.id,json_todo.name));
                     THIS.val("");
                 }
             })

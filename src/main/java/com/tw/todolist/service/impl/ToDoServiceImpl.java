@@ -23,4 +23,9 @@ public class ToDoServiceImpl implements ToDoService {
     public List<ToDo> findByUserId(Long id) {
         return toDoRepository.findByUserId(id);
     }
+
+    @Override
+    public ToDo save(ToDo toDo) {
+        return toDoRepository.save(toDo);
+    }
 }
