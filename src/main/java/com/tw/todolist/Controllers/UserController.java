@@ -43,10 +43,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    private String deleteUser(@RequestParam("user_id") Long id) throws Exception {
+    @ResponseBody
+    private Long deleteUser(@RequestParam("user_id") Long id) throws Exception {
 
         userService.deleteById(id);
-        return "redirect:/users";
+        return id;
     }
 
     @RequestMapping(value = "/{userName}/toDos", method = RequestMethod.GET)
