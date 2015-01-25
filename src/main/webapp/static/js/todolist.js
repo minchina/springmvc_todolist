@@ -52,7 +52,7 @@ $(window).ready(function(){
         console.log(data_id,name,is_checked($check_box));
         $.ajax({
             url:"/todo/update",
-            data:{id:data_id,name:name,status:is_checked($check_box)},
+            data:{id:data_id,name:name,complete:is_checked($check_box),userId:123},
             type:"POST",
             success:function(){
                 $label.text(name);
@@ -79,8 +79,10 @@ $(window).ready(function(){
         var name = $li.find(".edit").val();
         $.ajax({
             url:"/todo/update",
-            data:{id:data_id,name:name,status:is_checked($check_box)},
+            data:JSON.stringify({id:data_id,name:name,userId:123,complete:is_checked($check_box)}),
             type:"POST",
+            contentType:'application/json;charset=UTF-8',
+            dataType: 'json',
             success:function(){
                 $check_box.closest("li").toggleClass("completed");
             }
@@ -88,10 +90,8 @@ $(window).ready(function(){
     }
 
     function is_checked($check_box){
-        if($check_box.prop("checked")){
-            return 1
-        }
-        return 0;
+        return $check_box.prop("checked");
+
 
     }
 });

@@ -5,10 +5,7 @@ import com.tw.todolist.Domain.ToDo;
 import com.tw.todolist.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -24,6 +21,7 @@ public class ToDoController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showAllToDos(){
+
         ModelAndView modelAndView = new ModelAndView("index");
         List<ToDo> allToDos = toDoService.findAllToDos();
         modelAndView.addObject("allToDos", allToDos);
@@ -36,18 +34,21 @@ public class ToDoController {
 
         return toDoService.save(new ToDo(name, userId));
     }
-//
-//    @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
-//    public void deleteToDo(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception {
-//        toDoService.delete(id);
-//    }
-//
-//    @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
-//    public void updateToDoStatus(@RequestParam("id") Integer id, @RequestParam("name") String name,
-//                                 @RequestParam("status") Integer status, HttpServletResponse response) throws Exception {
-//        ToDo toDo = new ToDo(id, name, 0, status);
-//        toDoService.update(toDo);
-//    }
+
+    @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
+    public String deleteToDo(@RequestParam("id") Long id)  {
+        System.out.println(id);
+        toDoService.deleteById(id);
+        return "redirect:/users";
+    }
+
+    @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
+    public void updateToDoStatus(@RequestBody final ToDo toDo){
+        System.out.println(toDo.getName());
+        System.out.println(toDo.getId());
+        System.out.println(toDo.getUserId());
+        System.out.println(toDo.isComplete());
+    }
 //
 //    private ToDo createToDoByUserId(String name, Integer userId) {
 //        Integer toDoId = 0;
