@@ -2,7 +2,9 @@ package com.tw.todolist.Controllers;
 
 
 import com.tw.todolist.Domain.ToDo;
+import com.tw.todolist.Domain.User;
 import com.tw.todolist.service.ToDoService;
+import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +16,11 @@ import java.util.List;
 @RequestMapping("/")
 public class ToDoController {
 
-
+    @Autowired
+    private UserService userService;
 
     @Autowired
-    ToDoService toDoService;
+    private ToDoService toDoService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showAllToDos(){
@@ -30,9 +33,12 @@ public class ToDoController {
 
     @RequestMapping(value = "/todo/add", method = RequestMethod.POST)
     @ResponseBody
-    public ToDo addToDo(@RequestParam("name") String name, @RequestParam("user_id") Long userId){
+    public ToDo addToDo(@RequestParam("name") ToDo toDo, @RequestParam("user_id") Long userId){
+        User user = userService.findOne(userId);
+        user.addToDo(toDo);
+        userService.save(user);
+        return toDoService.findByName(toDo.getName());
 
-        return toDoService.save(new ToDo(name, userId));
     }
 
     @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)

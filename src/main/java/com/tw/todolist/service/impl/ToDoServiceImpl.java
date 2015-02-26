@@ -20,9 +20,10 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public List<ToDo> findByUserId(Long id) {
-        return toDoRepository.findByUserId(id);
+    public ToDo findByName(String name) {
+        return toDoRepository.findByName(name);
     }
+
 
     @Override
     public ToDo save(ToDo toDo) {

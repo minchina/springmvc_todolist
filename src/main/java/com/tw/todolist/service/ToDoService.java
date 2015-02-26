@@ -8,7 +8,7 @@ public interface ToDoService {
 
     List<ToDo> findAllToDos();
 
-    List<ToDo> findByUserId(Long id);
+    ToDo findByName(String name);
 
     ToDo save(ToDo toDo);
 

@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public User findOne(Long id) {
+        return userRepository.findOne(id);
+    }
 }

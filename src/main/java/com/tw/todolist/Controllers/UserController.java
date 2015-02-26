@@ -38,7 +38,6 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public User addUser(@RequestParam("user_name") User newUser){
-        System.out.println(newUser.getName());
         return userService.save(newUser);
     }
 
@@ -50,12 +49,11 @@ public class UserController {
         return id;
     }
 
-    @RequestMapping(value = "/{userName}/toDos", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userName}/todos", method = RequestMethod.GET)
     private ModelAndView showUserToDos(@PathVariable("userName") String name){
-
         User user = userService.findByName(name);
         ModelAndView modelAndView = new ModelAndView("userToDoList");
-        List<ToDo> userToDoLists = toDoService.findByUserId(user.getId());
+        List<ToDo> userToDoLists = user.getToDoList();
         modelAndView.addObject("userToDoList", userToDoLists);
         modelAndView.addObject("userId", user.getId());
         return modelAndView;

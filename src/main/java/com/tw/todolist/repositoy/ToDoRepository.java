@@ -11,10 +11,8 @@ import java.util.List;
 
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 public interface ToDoRepository extends JpaRepository<ToDo, Long>{
-
-    List<ToDo> findByUserId(Long userId);
 
     @Modifying
     @Transactional
@@ -26,4 +24,5 @@ public interface ToDoRepository extends JpaRepository<ToDo, Long>{
     @Query("update ToDo todo set todo.name = ?2,todo.complete = ?3 where todo.id = ?1")
     void updateToDo(Long id, String name, boolean complete);
 
+    ToDo findByName(String name);
 }

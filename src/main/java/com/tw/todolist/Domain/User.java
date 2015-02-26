@@ -2,6 +2,8 @@ package com.tw.todolist.Domain;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -15,6 +17,10 @@ public class User {
 
     @Column(name = "name")
     private String name="";
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "userId")
+    private List<ToDo> toDoList = new ArrayList<ToDo>();
 
     public User(){
 
@@ -37,5 +43,17 @@ public class User {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ToDo> getToDoList() {
+        return toDoList;
+    }
+
+    public void setToDoList(List<ToDo> toDoList) {
+        this.toDoList = toDoList;
+    }
+
+    public void addToDo(ToDo toDo){
+        toDoList.add(toDo);
     }
 }
