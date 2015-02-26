@@ -38,7 +38,7 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public User addUser(@RequestParam("user_name") User newUser){
-
+        System.out.println(newUser.getName());
         return userService.save(newUser);
     }
 
@@ -61,5 +61,4 @@ public class UserController {
         return modelAndView;
 
     }
-
 }
