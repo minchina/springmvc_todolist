@@ -1,6 +1,5 @@
 package com.springapp.mvc;
 
-import com.tw.todolist.Domain.ToDo;
 import com.tw.todolist.Domain.User;
 import com.tw.todolist.service.UserService;
 import org.junit.Test;
@@ -21,10 +20,7 @@ public class AppTests {
 
     @Test
     public void should_save_user_success(){
-        User user = new User("xx");
-        ToDo toDo = new ToDo("todo");
-        user.addToDo(toDo);
-        User savedUser = userService.save(user);
-        assertThat(savedUser.getName(), is("xx"));
+        User user = new User("mnc");
+        assertThat(user.getName(), is("mnc"));
     }
 }
