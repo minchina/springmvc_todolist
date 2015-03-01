@@ -1,4 +1,4 @@
-package com.tw.todolist.Domain;
+package com.tw.todolist.domain;
 
 import javax.persistence.*;
 
@@ -15,7 +15,7 @@ public class ToDo {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "complete")
+    @Column(name = "complete",nullable = false)
     private boolean complete = false;
 
     public ToDo(){

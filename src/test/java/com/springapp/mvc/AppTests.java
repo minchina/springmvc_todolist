@@ -1,6 +1,6 @@
 package com.springapp.mvc;
 
-import com.tw.todolist.Domain.User;
+import com.tw.todolist.domain.User;
 import com.tw.todolist.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

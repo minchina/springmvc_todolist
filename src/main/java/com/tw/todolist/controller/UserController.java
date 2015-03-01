@@ -1,8 +1,8 @@
-package com.tw.todolist.Controllers;
+package com.tw.todolist.controller;
 
 
-import com.tw.todolist.Domain.ToDo;
-import com.tw.todolist.Domain.User;
+import com.tw.todolist.domain.ToDo;
+import com.tw.todolist.domain.User;
 import com.tw.todolist.service.ToDoService;
 import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.tw.todolist.service;
 
 
-import com.tw.todolist.Domain.User;
+import com.tw.todolist.domain.User;
 
 import java.util.List;
 

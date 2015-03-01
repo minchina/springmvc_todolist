@@ -9,7 +9,7 @@
     <mvc:resources mapping="/static/**" location="/static/" />
 
     <mvc:annotation-driven />
-    <context:component-scan base-package="com.tw.todolist.Controllers"/>
+    <context:component-scan base-package="com.tw.todolist.controller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

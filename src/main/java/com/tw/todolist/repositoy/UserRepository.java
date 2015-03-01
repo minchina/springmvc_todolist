@@ -1,6 +1,6 @@
 package com.tw.todolist.repositoy;
 
-import com.tw.todolist.Domain.User;
+import com.tw.todolist.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

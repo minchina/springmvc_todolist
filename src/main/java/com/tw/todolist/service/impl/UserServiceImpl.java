@@ -1,6 +1,6 @@
 package com.tw.todolist.service.impl;
 
-import com.tw.todolist.Domain.User;
+import com.tw.todolist.domain.User;
 import com.tw.todolist.repositoy.UserRepository;
 import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

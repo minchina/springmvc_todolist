@@ -1,4 +1,4 @@
-package com.tw.todolist.Domain;
+package com.tw.todolist.domain;
 
 
 import javax.persistence.*;

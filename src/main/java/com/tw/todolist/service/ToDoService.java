@@ -1,6 +1,6 @@
 package com.tw.todolist.service;
 
-import com.tw.todolist.Domain.ToDo;
+import com.tw.todolist.domain.ToDo;
 
 import java.util.List;
 
