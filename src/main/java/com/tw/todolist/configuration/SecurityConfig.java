@@ -1,4 +1,4 @@
-package com.tw.todolist.configurations;
+package com.tw.todolist.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
