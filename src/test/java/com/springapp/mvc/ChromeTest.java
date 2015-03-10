@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
-public class FirefoxTest {
+public class ChromeTest {
 
-    public static String chromeDriverPath = "D:\\Code\\chromedriver.exe";
+    public static String chromeDriverPath = "/home/minchina/program/chromedriver";
     public static String chromeDriver = "webdriver.chrome.driver";
 
     @Test
@@ -22,19 +22,23 @@ public class FirefoxTest {
         System.setProperty(chromeDriver, chromeDriverPath);
         WebDriver driver = new ChromeDriver();
         driver.get("http://www.baidu.com");
-        
-        assertThat(driver.getTitle(),is("百度一下，你就知道"));
+        String firstPageTitle = driver.getTitle();
+        assertThat(firstPageTitle,is("百度一下，你就知道"));
         
         WebElement element = driver.findElement(By.id("kw"));
         element.sendKeys(searchKey);
         element.submit();
         (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
-                return d.getTitle().toLowerCase().substring(0,searchKey.length()).endsWith(searchKey);
+                return d.getTitle().toLowerCase().substring(0, searchKey.length()).endsWith(searchKey);
             }
         });
-        
-        assertThat(driver.getTitle().substring(0,searchKey.length()), is(searchKey));
+        String secondPageTitle = driver.getTitle();
+        assertThat(secondPageTitle.substring(0, searchKey.length()), is(searchKey));
         driver.quit();
+    }
+
+    private void print(String context){
+        System.out.println(context);
     }
 }

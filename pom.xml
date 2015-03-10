@@ -188,8 +188,6 @@
             <version>2.45.0</version>
         </dependency>
 
-
-
         <dependency>
             <groupId>org.seleniumhq.webdriver</groupId>
             <artifactId>webdriver-common</artifactId>
