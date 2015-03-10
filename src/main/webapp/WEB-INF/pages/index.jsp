@@ -13,6 +13,7 @@
 <header id="header">
   <h1>ToDos</h1>
   <a href="users" class="btn btn-primary btn-sm" role="button">用户列表</a>
+    <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
 </header>
 
 <section id="main" style="display: block;">
