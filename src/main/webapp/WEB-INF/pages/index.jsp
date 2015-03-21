@@ -5,8 +5,8 @@
 <html>
 <head>
   <title>TODO主页</title>
-  <link rel="stylesheet" type="text/css" href="/static/bower_components/todomvc-common/base.css">
-  <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/static/bower_components/todomvc-common/base.css" />" />
+  <link rel="stylesheet" href="<c:url value="/static/bower_components/bootstrap/dist/css/bootstrap.css" />" />
 </head>
 <body>
 
@@ -33,7 +33,7 @@
   </ul>
 </section>
 
-<script  src="/static//bower_components/jquery/dist/jquery.js"  ></script>
+<script  src="<c:url value="/static/bower_components/jquery/dist/jquery.js" /> ></script>
 
 </body>
 </html>
