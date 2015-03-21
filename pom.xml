@@ -212,6 +212,7 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.22</version>
                 <configuration>
+                    <webAppSourceDirectory>src/main/webapp/</webAppSourceDirectory>
                     <contextPath>/</contextPath>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <scanTargetPatterns>
