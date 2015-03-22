@@ -95,5 +95,10 @@
     <orderEntry type="library" name="Maven: org.apache.commons:commons-exec:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-support:2.45.0" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.webdriver:webdriver-common:0.9.7376" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-junit:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-core:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-html:0.2.3" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:cucumber-jvm-deps:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: info.cukes:gherkin:2.12.2" level="project" />
   </component>
 </module>

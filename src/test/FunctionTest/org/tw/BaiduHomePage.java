@@ -15,6 +15,8 @@ public class BaiduHomePage {
     @FindBy(id = "su")
     private WebElement doSearchButton;
 
+    @FindBy(name = "tj_trnews")
+    private WebElement news;
 
     public BaiduHomePage(WebDriver driver) {
         this.webDriver = driver;
@@ -41,11 +43,19 @@ public class BaiduHomePage {
         this.title = title;
     }
 
-    public WebElement getDoSerarchButton() {
+    public WebElement getDoSearchButton() {
         return doSearchButton;
     }
 
-    public void setDoSerarchButton(WebElement doSerarchButton) {
-        this.doSearchButton = doSerarchButton;
+    public void setDoSearchButton(WebElement doSearchButton) {
+        this.doSearchButton = doSearchButton;
+    }
+
+    public WebElement getNews() {
+        return news;
+    }
+
+    public void setNews(WebElement news) {
+        this.news = news;
     }
 }

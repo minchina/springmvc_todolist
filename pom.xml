@@ -196,8 +196,14 @@
             <artifactId>webdriver-common</artifactId>
             <version>0.9.7376</version>
         </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.2</version>
+        </dependency>
 
-        </dependencies>
+
+    </dependencies>
 
     <build>
         <finalName>todolist</finalName>
