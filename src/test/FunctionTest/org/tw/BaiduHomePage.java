@@ -9,15 +9,15 @@ public class BaiduHomePage {
 
     private WebDriver webDriver;
 
-    @FindBy(tagName = "title")
-    private WebElement title;
 
     @FindBy(id = "su")
     private WebElement doSearchButton;
 
+    @FindBy(id = "kw")
+    private WebElement searchInput;
+
     @FindBy(name = "tj_trnews")
     private WebElement news;
-
     public BaiduHomePage(WebDriver driver) {
         this.webDriver = driver;
     }
@@ -25,6 +25,11 @@ public class BaiduHomePage {
     public static BaiduHomePage navigateTo(WebDriver webDriver){
         webDriver.get("http://www.baidu.com");
         return PageFactory.initElements(webDriver, BaiduHomePage.class);
+    }
+
+    public void doSearch(String keyWord){
+        searchInput.sendKeys(keyWord);
+        doSearchButton.click();
     }
 
     public WebDriver getWebDriver() {
@@ -35,13 +40,6 @@ public class BaiduHomePage {
         this.webDriver = webDriver;
     }
 
-    public WebElement getTitle() {
-        return title;
-    }
-
-    public void setTitle(WebElement title) {
-        this.title = title;
-    }
 
     public WebElement getDoSearchButton() {
         return doSearchButton;
@@ -57,5 +55,13 @@ public class BaiduHomePage {
 
     public void setNews(WebElement news) {
         this.news = news;
+    }
+
+    public WebElement getSearchInput() {
+        return searchInput;
+    }
+
+    public void setSearchInput(WebElement searchInput) {
+        this.searchInput = searchInput;
     }
 }
