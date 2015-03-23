@@ -4,7 +4,10 @@ import com.springapp.mvc.utils.WebDriverManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.tw.BaiduHomePage;
@@ -30,10 +33,20 @@ public class BaiduHomePageTest {
     }
 
     @Test
-    public void should_do_search(){
+    public void should_do_search() {
         baiduHomePage.doSearch("cuit");
         waitForReady("cuit");
         assertThat(webDriver.getTitle().startsWith("cuit"), is(true));
+    }
+    @Test
+    public void should_execute_js() throws InterruptedException {
+
+        WebElement webElement = webDriver.findElement(By.xpath("//*[contains(text(), '百度首页')]"));
+        String _class = "." + webElement.getAttribute("class");
+        String js = "$('.toindex')[0].setAttribute('style','background-color:red')";
+        ((JavascriptExecutor) webDriver).executeScript(js);
+
+        assertThat(webElement.getAttribute("style"), is("background-color: red;"));
     }
 
     private void waitForReady(final String startWith) {
@@ -46,7 +59,7 @@ public class BaiduHomePageTest {
     }
 
     @AfterClass
-    public static void destory() {
-        webDriver.close();
+    public static void destroy() {
+        WebDriverManager.deleteWebDriver();
     }
 }
