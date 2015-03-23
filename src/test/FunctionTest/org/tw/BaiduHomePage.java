@@ -18,6 +18,7 @@ public class BaiduHomePage {
 
     @FindBy(name = "tj_trnews")
     private WebElement news;
+
     public BaiduHomePage(WebDriver driver) {
         this.webDriver = driver;
     }
@@ -26,7 +27,6 @@ public class BaiduHomePage {
         webDriver.get("http://www.baidu.com");
         return PageFactory.initElements(webDriver, BaiduHomePage.class);
     }
-
     public void doSearch(String keyWord){
         searchInput.sendKeys(keyWord);
         doSearchButton.click();

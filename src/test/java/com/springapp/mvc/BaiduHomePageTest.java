@@ -12,9 +12,8 @@ import org.tw.BaiduHomePage;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class BaiduHomePageTest {
+public class BaiduHomePageTest extends PageTest{
 
-    public static WebDriver webDriver;
     private static BaiduHomePage baiduHomePage;
 
 
