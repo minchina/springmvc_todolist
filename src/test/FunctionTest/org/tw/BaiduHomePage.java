@@ -3,9 +3,8 @@ package org.tw;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class BaiduHomePage {
+public class BaiduHomePage extends Page{
 
     private WebDriver webDriver;
 
@@ -23,10 +22,6 @@ public class BaiduHomePage {
         this.webDriver = driver;
     }
 
-    public static BaiduHomePage navigateTo(WebDriver webDriver){
-        webDriver.get("http://www.baidu.com");
-        return PageFactory.initElements(webDriver, BaiduHomePage.class);
-    }
     public void doSearch(String keyWord){
         searchInput.sendKeys(keyWord);
         doSearchButton.click();
