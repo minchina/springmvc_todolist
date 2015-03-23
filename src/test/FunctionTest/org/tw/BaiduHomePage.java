@@ -8,7 +8,6 @@ public class BaiduHomePage extends Page{
 
     private WebDriver webDriver;
 
-
     @FindBy(id = "su")
     private WebElement doSearchButton;
 
