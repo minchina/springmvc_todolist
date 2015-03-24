@@ -1,5 +1,6 @@
 package com.springapp.mvc;
 
+import com.springapp.mvc.utils.ScreenShotUtils;
 import com.springapp.mvc.utils.WebDriverManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.tw.BaiduHomePage;
 
+import static com.springapp.mvc.utils.TranslateUtils.translate;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -38,15 +40,41 @@ public class BaiduHomePageTest {
         waitForReady("cuit");
         assertThat(webDriver.getTitle().startsWith("cuit"), is(true));
     }
+
     @Test
-    public void should_execute_js() throws InterruptedException {
+    public void should_execute_js_find_special_filename() throws InterruptedException {
+        waitForReady("百度");
+        baiduHomePage.doSearch("cuit");
+        waitForReady("cuit");
 
         WebElement webElement = webDriver.findElement(By.xpath("//*[contains(text(), '百度首页')]"));
         String _class = "." + webElement.getAttribute("class");
-        String js = "$('.toindex')[0].setAttribute('style','background-color:red')";
-        ((JavascriptExecutor) webDriver).executeScript(js);
 
+        String js = "$('"+_class+"')[0].setAttribute('style','background-color:red')";
+        ((JavascriptExecutor) webDriver).executeScript(js);
+        ScreenShotUtils.take(webDriver, "D:\\baidu1.png");
         assertThat(webElement.getAttribute("style"), is("background-color: red;"));
+
+        String postJs = "$('.toindex')[0].removeAttribute('style')";
+        ((JavascriptExecutor)webDriver).executeScript(postJs);
+        ScreenShotUtils.take(webDriver, "D:\\baidu2.png");
+
+
+        assertThat(webElement.getAttribute("style"), is(""));
+    }
+
+    @Test
+    public void should_execute_js_find_filename() throws InterruptedException {
+        waitForReady("百度");
+        baiduHomePage.doSearch("cuit");
+        waitForReady("cuit");
+
+        WebElement webElement = webDriver.findElement(By.xpath("//*[contains(text(), '行政楼')]"));
+
+        String js = "document.getElementsByClassName(\"c-abstract\")[0].innerHTML = "+translate(webElement, "行政楼");
+
+        ((JavascriptExecutor)webDriver).executeScript(js);
+        ScreenShotUtils.take(webDriver,"D:\\trans.png");
     }
 
     private void waitForReady(final String startWith) {
@@ -63,3 +91,4 @@ public class BaiduHomePageTest {
         WebDriverManager.deleteWebDriver();
     }
 }
+
