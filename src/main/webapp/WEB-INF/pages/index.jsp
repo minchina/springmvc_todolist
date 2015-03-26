@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <html>
@@ -33,6 +34,9 @@
   </ul>
 </section>
 
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<h1>The title only for Admin</h1>
+</sec:authorize>
 <script  src="<c:url value="/static/bower_components/jquery/dist/jquery.js" /> ></script>
 
 </body>

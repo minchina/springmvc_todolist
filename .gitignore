@@ -1,3 +1,7 @@
 .idea
+<<<<<<< Updated upstream
+=======
+bower_components
+>>>>>>> Stashed changes
 target
 todolist.iml

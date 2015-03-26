@@ -8,9 +8,10 @@
 
     <http>
         <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
+        <intercept-url pattern="/users" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" access="ROLE_USER"/>
-        <http-basic/>
-        <logout/>
+        <form-login />
+        <logout delete-cookies="JSESSIONID"/>
     </http>
 
     <authentication-manager>
