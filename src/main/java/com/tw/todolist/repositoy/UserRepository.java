@@ -9,11 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Modifying
-    @Transactional
     @Query("delete from User u where u.id = ?1")
     void deleteById(Long id);
 

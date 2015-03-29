@@ -13,12 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ToDoRepository extends JpaRepository<ToDo, Long>{
 
     @Modifying
-    @Transactional
     @Query("delete from ToDo todo where todo.id = ?1")
     void deleteById(Long id);
 
     @Modifying
-    @Transactional
     @Query("update ToDo todo set todo.name = ?2,todo.complete = ?3 where todo.id = ?1")
     void updateToDo(Long id, String name, boolean complete);
 
