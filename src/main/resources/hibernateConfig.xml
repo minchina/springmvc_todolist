@@ -38,7 +38,7 @@
        </bean>
 
 
-       <tx:annotation-driven transaction-manager="transactionManager" />
+       <tx:annotation-driven />
 
        <!-- Transaction Config -->
        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
