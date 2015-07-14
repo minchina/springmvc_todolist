@@ -11,6 +11,9 @@
         <spring.version>4.1.1.RELEASE</spring.version>
         <usecase.version>1.2.0</usecase.version>
         <revision>SNAPSHOT</revision>
+        <test.target.output.dir>${basedir}/target</test.target.output.dir>
+        <env>local</env>
+        <env.path>${basedir}/build/env/${env}</env.path>
     </properties>
 
     <dependencies>
@@ -216,6 +219,11 @@
         <testSourceDirectory>
             src/test/FunctionTest
         </testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${env.path}</directory>
+            </testResource>
+        </testResources>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -268,7 +276,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.13</version>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
                 </configuration>
             </plugin>
         </plugins>
