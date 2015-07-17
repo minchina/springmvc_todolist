@@ -211,6 +211,12 @@
             <version>1.2.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.jawr</groupId>
+            <artifactId>jawr-core</artifactId>
+            <version>3.7</version>
+        </dependency>
+
 
     </dependencies>
 

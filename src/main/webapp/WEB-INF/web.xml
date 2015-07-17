@@ -63,4 +63,19 @@
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>JavascriptServlet</servlet-name>
+        <servlet-class>net.jawr.web.servlet.JawrServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:properties/jawr.properties</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>JavascriptServlet</servlet-name>
+    <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+
 </web-app>
