@@ -1,6 +1,7 @@
 package com.tw.todolist.controller;
 
 
+import com.tw.todolist.PageForm.NewToDoPageForm;
 import com.tw.todolist.domain.ToDo;
 import com.tw.todolist.domain.User;
 import com.tw.todolist.service.ToDoService;
@@ -57,5 +58,18 @@ public class ToDoController {
         toDoService.updateToDo(toDo);
         return toDo;
 
+    }
+
+    @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)
+    @ResponseBody
+    public User add(@RequestBody NewToDoPageForm form){
+        System.out.println(form.getAge());
+        return new User("xyz");
+
+    }
+
+    @RequestMapping(value = "/v1/todo/add", method = RequestMethod.GET)
+    public ModelAndView showAddPage() {
+        return new ModelAndView("newTodo");
     }
 }
