@@ -18,9 +18,10 @@
     </bean>
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.mailgun.org"/>
-        <property name="username" value="postmaster@sandbox82999be018984742bef21d42d975417a.mailgun.org" />
-        <property name="password" value="09195572cd23dfe842fba0619bfc80a3" />
+        <property name="host" value="smtp.mandrillapp.com"/>
+        <property name="username" value="minchina91@gmail.com" />
+        <property name="port" value="587" />
+        <property name="password" value="bvkKF9iLBLMJ8RggVXGi3Q" />
     </bean>
 
     <bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">

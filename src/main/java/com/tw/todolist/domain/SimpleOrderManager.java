@@ -47,15 +47,15 @@ public class SimpleOrderManager implements OrderManager {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
             helper.setFrom(templateMessage.getFrom());
-            helper.setTo(templateMessage.getTo());
+            helper.setTo(order.getCustomer().getEmailAddress());
             helper.setSubject(templateMessage.getSubject());
             helper.setText("Dear" + order.getCustomer().getFirstName()
                     + order.getCustomer().getLastName()
                     + ", thank you for placing order. Your order number is "
                     + order.getOrderNumber());
 
-            FileSystemResource file = new FileSystemResource("C:\\log.txt");
-            helper.addAttachment(file.getFilename(), file);
+//            FileSystemResource file = new FileSystemResource("C:\\log.txt");
+//            helper.addAttachment(file.getFilename(), file);
 
         }catch (MessagingException e) {
             throw new MailParseException(e);

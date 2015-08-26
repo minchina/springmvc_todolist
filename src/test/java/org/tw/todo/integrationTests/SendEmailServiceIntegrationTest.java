@@ -24,4 +24,12 @@ public class SendEmailServiceIntegrationTest {
         Order order = new Order(customer, "1234");
         orderManager.send(order);
     }
+
+    @Test
+    public void shouldRunSendEmailWell1() {
+
+        Customer customer = new Customer("mao", "nc", "minchina91@gmail.com");
+        Order order = new Order(customer, "1234");
+        orderManager.sendTo(order);
+    }
 }
