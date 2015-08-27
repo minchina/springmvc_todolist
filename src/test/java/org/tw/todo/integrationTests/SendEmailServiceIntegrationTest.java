@@ -3,6 +3,7 @@ package org.tw.todo.integrationTests;
 import com.tw.todolist.domain.Customer;
 import com.tw.todolist.domain.Order;
 import com.tw.todolist.service.OrderManager;
+import com.tw.todolist.service.impl.RegistrationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class SendEmailServiceIntegrationTest {
 
     @Autowired
     private OrderManager orderManager;
+
+    @Autowired
+    private RegistrationService registrationService;
 
     @Test
     public void shouldRunSendEmailWell() {
@@ -31,5 +35,14 @@ public class SendEmailServiceIntegrationTest {
         Customer customer = new Customer("mao", "nc", "minchina91@gmail.com");
         Order order = new Order(customer, "1234");
         orderManager.sendTo(order);
+    }
+
+    @Test
+    public void shouldSendEmailSuccessByTemplate() {
+
+        Customer customer = new Customer("mao", "nc", "minchina91@gmail.com");
+        Order order = new Order(customer, "1234");
+        registrationService.register(order);
+
     }
 }

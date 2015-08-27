@@ -237,9 +237,11 @@
             <artifactId>spring-context-support</artifactId>
             <version>4.1.1.RELEASE</version>
         </dependency>
-
-
-
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
     </dependencies>
 
     <build>
