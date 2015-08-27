@@ -29,7 +29,7 @@
         <property name="subject" value="Your order"/>
     </bean>
 
-    <bean id="orderManager" class="com.tw.todolist.domain.SimpleOrderManager">
+    <bean id="orderManager" class="com.tw.todolist.service.impl.MailService">
         <property name="mailSender" ref="mailSender"/>
         <property name="templateMessage" ref="templateMessage"/>
     </bean>

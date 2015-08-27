@@ -2,7 +2,7 @@ package org.tw.todo.integrationTests;
 
 import com.tw.todolist.domain.Customer;
 import com.tw.todolist.domain.Order;
-import com.tw.todolist.domain.OrderManager;
+import com.tw.todolist.service.OrderManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

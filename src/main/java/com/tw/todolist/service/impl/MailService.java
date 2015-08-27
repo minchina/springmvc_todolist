@@ -1,9 +1,9 @@
-package com.tw.todolist.domain;
+package com.tw.todolist.service.impl;
 
-import org.springframework.core.io.FileSystemResource;
+import com.tw.todolist.domain.Order;
+import com.tw.todolist.service.OrderManager;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailParseException;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -12,7 +12,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 
-public class SimpleOrderManager implements OrderManager {
+public class MailService implements OrderManager {
 
     private JavaMailSender mailSender;
     private SimpleMailMessage templateMessage;
@@ -49,13 +49,13 @@ public class SimpleOrderManager implements OrderManager {
             helper.setFrom(templateMessage.getFrom());
             helper.setTo(order.getCustomer().getEmailAddress());
             helper.setSubject(templateMessage.getSubject());
-            helper.setText("Dear" + order.getCustomer().getFirstName()
+            helper.setText("<h1>Dear</h1>" + order.getCustomer().getFirstName()
                     + order.getCustomer().getLastName()
                     + ", thank you for placing order. Your order number is "
-                    + order.getOrderNumber());
+                    + order.getOrderNumber(), true);
 
-//            FileSystemResource file = new FileSystemResource("C:\\log.txt");
-//            helper.addAttachment(file.getFilename(), file);
+//            FileSystemResource file = new FileSystemResource("/Users/ncmao/dev/test.txt");
+//            helper.addAttachment("test111.txt", file);
 
         }catch (MessagingException e) {
             throw new MailParseException(e);
