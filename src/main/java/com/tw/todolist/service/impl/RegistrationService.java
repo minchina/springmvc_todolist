@@ -1,7 +1,9 @@
 package com.tw.todolist.service.impl;
 
 import com.tw.todolist.domain.Order;
+import netscape.security.ForbiddenTargetException;
 import org.apache.velocity.app.VelocityEngine;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -12,6 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationService {
+
+    @Value("${email.switch:false}")
+    private Boolean isAllowRegister;
 
     private JavaMailSender mailSender;
     private VelocityEngine velocityEngine;
@@ -26,8 +31,9 @@ public class RegistrationService {
     }
 
     public void register(Order order) {
-
-        // Do the registration logic...
+        if(!isAllowRegister) {
+            throw new RuntimeException("forbidden register");
+        }
 
         sendConfirmationEmail(order);
     }
