@@ -14,7 +14,11 @@
     <!--@Repository annotation -->
     <jpa:repositories base-package="com.tw.todolist.repositoy"/>
 
+
+    <!--config properties file-->
     <util:properties id="regionProperties" location="classpath:properties/fieldnames.properties" />
+
+    <!--configure sending email -->
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:properties/database.properties"/>
@@ -51,6 +55,7 @@
         <property name="velocityEngine" ref="velocityEngine"/>
     </bean>
 
+    <!--hibernate configuration-->
     <import resource="classpath:hibernateConfig.xml"/>
 
 </beans>
