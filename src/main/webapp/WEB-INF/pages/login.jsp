@@ -12,6 +12,14 @@
     <title></title>
 </head>
 <body>
+
+<%
+
+  String errorString = (String)request.getAttribute("error");
+  if(errorString != null && errorString.trim().equals("true")){
+    out.println("Incorrect login name or password. Please retry using correct login name and password.");
+  }
+%>
 <c:url value="/j_spring_security_check" var="loginUrl" />
 
 <form name='f' action='${loginUrl}' method='POST'>
