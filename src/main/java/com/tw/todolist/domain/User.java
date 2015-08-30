@@ -22,6 +22,12 @@ public class User {
     @JoinColumn(name = "userId")
     private List<ToDo> toDoList = new ArrayList<ToDo>();
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    private String password;
+
     public User(){
 
     }
@@ -55,5 +61,21 @@ public class User {
 
     public void addToDo(ToDo toDo){
         toDoList.add(toDo);
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
