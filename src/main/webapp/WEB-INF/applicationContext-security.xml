@@ -6,12 +6,12 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http use-expressions="false" auto-config="true">
-        <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
-        <intercept-url pattern="/users" access="ROLE_ADMIN" />
-        <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/**" access="ROLE_USER"/>
-        <form-login login-page="/login" default-target-url="/users" always-use-default-target="true" authentication-failure-url="/loginError"
+    <http use-expressions="true" auto-config="true">
+        <intercept-url pattern="/favicon.ico" access="permitAll" />
+        <intercept-url pattern="/users" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/login*" access="permitAll"/>
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER')"/>
+        <form-login login-page="/login" default-target-url="/" always-use-default-target="true" authentication-failure-url="/loginError"
                 />
         <!--<form-login />-->
         <logout delete-cookies="JSESSIONID"/>
