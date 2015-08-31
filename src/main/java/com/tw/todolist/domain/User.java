@@ -1,6 +1,9 @@
 package com.tw.todolist.domain;
 
 
+import com.google.common.collect.Lists;
+import com.tw.todolist.domain.security.Role;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +25,9 @@ public class User {
     @JoinColumn(name = "userId")
     private List<ToDo> toDoList = new ArrayList<ToDo>();
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "userid")
+    private List<Role> roles;
 
     private String password;
 
@@ -63,12 +66,20 @@ public class User {
         toDoList.add(toDo);
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public String[] getRolesList() {
+        String array[] = new String[roles.size()];
+        for(int j =0;j<roles.size();j++){
+            array[j] = roles.get(j).getName();
+        }
+        return array;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public String getPassword() {
@@ -78,4 +89,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

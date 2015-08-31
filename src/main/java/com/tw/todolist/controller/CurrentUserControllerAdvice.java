@@ -1,6 +1,6 @@
 package com.tw.todolist.controller;
 
-import com.tw.todolist.domain.CurrentUser;
+import com.tw.todolist.domain.security.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
