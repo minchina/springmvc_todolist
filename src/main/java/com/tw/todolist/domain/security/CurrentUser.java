@@ -4,6 +4,7 @@ import com.tw.todolist.domain.User;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.util.List;
+import java.util.Set;
 
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
@@ -22,7 +23,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
         return user.getId();
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return user.getRoles();
     }
 

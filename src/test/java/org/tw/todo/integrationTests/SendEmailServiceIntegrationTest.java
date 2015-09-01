@@ -1,4 +1,4 @@
-package org.tw.todo;
+package org.tw.todo.integrationTests;
 
 import com.tw.todolist.domain.Customer;
 import com.tw.todolist.domain.Order;

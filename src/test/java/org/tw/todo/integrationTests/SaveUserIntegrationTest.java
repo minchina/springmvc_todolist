@@ -20,12 +20,4 @@ public class SaveUserIntegrationTest {
     private UserService userService;
 
 
-    @Test
-    public void shouldSaveUser() {
-        User user = new User();
-        user.setName("demo");
-        user.setPassword("demo");
-        user.setRoles(Arrays.asList(new Role("ROLE_ADMIN")));
-        userService.save(user);
-    }
 }

@@ -1,12 +1,16 @@
 package com.tw.todolist.domain;
 
 
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.tw.todolist.domain.security.Role;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -25,9 +29,12 @@ public class User {
     @JoinColumn(name = "userId")
     private List<ToDo> toDoList = new ArrayList<ToDo>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "userid")
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = {
+            @JoinColumn(name = "USER_ID", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID",
+                    nullable = false, updatable = false) })
+    private Set<Role> roles = new HashSet<Role>();
 
     private String password;
 
@@ -66,19 +73,25 @@ public class User {
         toDoList.add(toDo);
     }
 
-    public List<Role> getRoles() {
+    public String[] getRolesList() {
+
+        List<Role> roleArrayList = new ArrayList<Role>(this.roles);
+        Iterable<String> transformed = Iterables.transform(roleArrayList, new Function<Role, String>() {
+            @Override
+            public String apply(Role role) {
+                return role.getName();
+            }
+        });
+        return Iterables.toArray(transformed, String.class);
+
+
+    }
+
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public String[] getRolesList() {
-        String array[] = new String[roles.size()];
-        for(int j =0;j<roles.size();j++){
-            array[j] = roles.get(j).getName();
-        }
-        return array;
-    }
-
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
