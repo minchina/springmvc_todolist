@@ -11,7 +11,7 @@
         <intercept-url pattern="/users" access="hasAnyRole('ROLE_ADMIN')" />
         <intercept-url pattern="/login*" access="permitAll"/>
         <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER')"/>
-        <form-login login-page="/login" default-target-url="/" always-use-default-target="true" authentication-failure-url="/loginError"
+        <form-login login-page="/login" always-use-default-target="true" authentication-failure-url="/loginError"
                 />
         <!--<form-login />-->
         <logout delete-cookies="JSESSIONID"/>
