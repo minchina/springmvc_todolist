@@ -23,6 +23,7 @@
                 <!--<user name="jimi" password="pass" authorities="ROLE_USER, ROLE_ADMIN" />-->
                 <!--<user name="bob" password="pass" authorities="ROLE_USER" />-->
             <!--</user-service>-->
+            <password-encoder hash="bcrypt" />
         </authentication-provider>
     </authentication-manager>
 

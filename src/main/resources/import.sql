@@ -1,5 +1,5 @@
-INSERT INTO user (name, password)VALUES ('demo', 'demo');
-INSERT INTO user (name, password)VALUES ('test', 'test');
+INSERT INTO user (name, password)VALUES ('demo', '$2a$10$gCVHMV2QPMKHJMtvvQU5ce0Pqidl.WTGeReTOBU.1bGRlTKWVFAY2');
+INSERT INTO user (name, password)VALUES ('test', '$2a$10$7Zq.eWupYwZRXmCzknNAIuvCKJIhojxmrJ.LqUcbyfbBn09B4R0qW');
 INSERT INTO role(NAME) VALUE ('ROLE_ADMIN')
 INSERT INTO role(NAME) VALUE ('ROLE_USER')
 INSERT INTO user_role(USER_ID,ROLE_ID) VALUES (1,1)
