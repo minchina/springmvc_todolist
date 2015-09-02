@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import com.tw.todolist.PageForm.NewToDoPageForm;
 
 import java.util.List;
 
@@ -57,14 +56,6 @@ public class ToDoController {
 
         toDoService.updateToDo(toDo);
         return toDo;
-
-    }
-
-    @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)
-    @ResponseBody
-    public User add(@RequestBody NewToDoPageForm form){
-        System.out.println(form.getAge());
-        return new User("xyz");
 
     }
 
