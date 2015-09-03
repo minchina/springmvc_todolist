@@ -51,7 +51,7 @@
     </bean>
 
     <bean id="registrationService" class="com.tw.todolist.service.impl.RegistrationService">
-        <property name="mailSender" ref="mailSender"/>
+            <property name="mailSender" ref="mailSender"/>
         <property name="velocityEngine" ref="velocityEngine"/>
     </bean>
 
