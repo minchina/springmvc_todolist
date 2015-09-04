@@ -16,8 +16,7 @@
 <body>
 <h1>Premium Summary</h1>
 
-<div class="premiumSummary">
-    sdfsdf
+<div class="Summary" id="premiumSummary">
 </div>
 
 <script  src="<c:url value="/static/bower_components/jquery/dist/jquery.js" />"></script>
@@ -25,4 +24,11 @@
 <script  src="<c:url value="/static/bower_components/bootstrap/dist/js/bootstrap.min.js" />"></script>
 <script  src="<c:url value="/static/js/premiumSummary.js" />"></script>
 </body>
+
+<script type="text/javascript">
+    $(window).ready(function(){
+        Equote.premium().startup();
+
+    })
+</script>
 </html>
