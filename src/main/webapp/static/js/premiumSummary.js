@@ -11,7 +11,7 @@ Equote.premium = function(){
 
 
     function init() {
-        fetchData(insertData);
+        fetchData();
 
     }
 
@@ -21,14 +21,12 @@ Equote.premium = function(){
             .appendTo( "#premiumSummary" );
     }
 
-    function fetchData(target) {
+    function fetchData() {
         $.ajax({
             url:"/pricing/calculate",
             data:{},
             type:"POST",
-            success:function(data){
-                target(data);
-            }
+            success:insertData
         })
 
     }

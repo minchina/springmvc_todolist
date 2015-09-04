@@ -12,7 +12,7 @@ public class PremiumResponse {
         return "12";
     }
 
-    public String getlifeCoverPremium() {
+    public String getLifeCoverPremium() {
         return "34";
     }
 
