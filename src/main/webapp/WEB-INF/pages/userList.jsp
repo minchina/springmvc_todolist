@@ -30,6 +30,9 @@
         </c:forEach>
     </ul>
 </section>
+<div style="margin-top: 100px">
+    <jsp:include page="upload.jsp" />
+</div>
 
 
 <script src="<c:url value="/static/bower_components/jquery/dist/jquery.js" />"></script>
