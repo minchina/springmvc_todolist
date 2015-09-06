@@ -8,6 +8,7 @@ Equote.init = function() {
         var $sumbit = $("#submit_todo");
 
         $sumbit.click(function(){
+            console.log(getData());
             $.ajax({
                 headers: {
                     'Accept': 'application/json',

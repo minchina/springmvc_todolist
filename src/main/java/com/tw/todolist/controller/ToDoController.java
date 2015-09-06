@@ -3,6 +3,7 @@ package com.tw.todolist.controller;
 
 import com.tw.todolist.domain.ToDo;
 import com.tw.todolist.domain.User;
+import com.tw.todolist.domain.form.ToDoForm;
 import com.tw.todolist.service.ToDoService;
 import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,24 @@ public class ToDoController {
 
     @RequestMapping(value = "/v1/todo/add", method = RequestMethod.GET)
     public ModelAndView showAddPage() {
-        return new ModelAndView("newTodo");
+        List<ToDo> allToDos = toDoService.findAllToDos();
+        ModelAndView todo = new ModelAndView("newTodo");
+        todo.addObject("todos", allToDos);
+        todo.addObject("newtodo", new ToDoForm("todo1"));
+        return todo;
+    }
+    @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ToDo> addTodo(@RequestBody ToDoForm toDoForm) {
+        ToDo toDo = new ToDo();
+        mapToDoFormToDomain(toDo, toDoForm);
+        toDoService.save(toDo);
+        return toDoService.findAllToDos();
+
+    }
+
+    private void mapToDoFormToDomain(ToDo toDo, ToDoForm toDoForm) {
+        toDo.setComplete(false);
+        toDo.setName(toDoForm.getName());
     }
 }
