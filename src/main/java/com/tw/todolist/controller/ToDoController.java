@@ -65,7 +65,7 @@ public class ToDoController {
         List<ToDo> allToDos = toDoService.findAllToDos();
         ModelAndView todo = new ModelAndView("newTodo");
         todo.addObject("todos", allToDos);
-        todo.addObject("newtodo", new ToDoForm("todo1"));
+        todo.addObject("newtodo", new ToDoForm(""));
         return todo;
     }
     @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)

@@ -8,7 +8,6 @@ Equote.init = function() {
         var $sumbit = $("#submit_todo");
 
         $sumbit.click(function(){
-            console.log(getData());
             $.ajax({
                 headers: {
                     'Accept': 'application/json',
@@ -18,12 +17,19 @@ Equote.init = function() {
                 'url': "/v1/todo/add",
                 'data': JSON.stringify(getData()),
                 'dataType': 'json',
-                'success': successHander
+                'success': successHandle
             });
         })
     }
 
-    function successHander(result) {
+    function successHandle(result) {
+        var $todos = $("#todos");
+        var target ="";
+        for(var i=0;i<result.length;i++) {
+            target= target + "<div>" + result[i].name + "</div>";
+        }
+        $todos.empty();
+        $(target).appendTo($todos);
         console.log(result);
     }
 
