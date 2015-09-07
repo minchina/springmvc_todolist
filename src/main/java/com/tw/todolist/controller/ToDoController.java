@@ -4,6 +4,7 @@ package com.tw.todolist.controller;
 import com.tw.todolist.domain.ToDo;
 import com.tw.todolist.domain.User;
 import com.tw.todolist.domain.form.ToDoForm;
+import com.tw.todolist.enumeration.Gender;
 import com.tw.todolist.service.ToDoService;
 import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,10 @@ public class ToDoController {
     public ModelAndView showAddPage() {
         List<ToDo> allToDos = toDoService.findAllToDos();
         ModelAndView todo = new ModelAndView("newTodo");
+        ToDoForm toDoForm = new ToDoForm("");
+        toDoForm.setGenders(Gender.MALE.getGenders());
         todo.addObject("todos", allToDos);
-        todo.addObject("newtodo", new ToDoForm(""));
+        todo.addObject("newtodo", toDoForm);
         return todo;
     }
     @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)
