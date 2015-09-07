@@ -66,7 +66,7 @@ public class ToDoController {
         List<ToDo> allToDos = toDoService.findAllToDos();
         ModelAndView todo = new ModelAndView("newTodo");
         ToDoForm toDoForm = new ToDoForm("");
-        toDoForm.setGenders(Gender.MALE.getGenders());
+        toDoForm.setGender(Gender.MALE);
         todo.addObject("todos", allToDos);
         todo.addObject("newtodo", toDoForm);
         return todo;

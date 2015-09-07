@@ -25,11 +25,8 @@
 <form  class="todo" name="NewToDoPageForm" method="post" action="/v1/todo/add">
     <div id="test_format" >
         Todo Name:<input type="text" name="name" value="${newtodo.name}">
-        <select>
-            <c:forEach varStatus="index" items="${newtodo.genders}">
-                <option value="${newtodo.genders[index.index]}">${newtodo.genders[index.index]}</option>
-            </c:forEach>
-        </select>
+
+        <input type="text" name="gender" value="${newtodo.gender}">
     </div>
 
     <button type="button" id="submit_todo">Click Me To Submit</button>

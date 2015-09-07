@@ -2,13 +2,11 @@ package com.tw.todolist.domain.form;
 
 import com.tw.todolist.enumeration.Gender;
 
-import java.util.List;
-
 public class ToDoForm {
 
     private String name;
 
-    private List<Gender> genders;
+    private Gender gender;
 
 
     public ToDoForm() {
@@ -26,11 +24,11 @@ public class ToDoForm {
         this.name = name;
     }
 
-    public List<Gender> getGenders() {
-        return genders;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setGenders(List<Gender> genders) {
-        this.genders = genders;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }
