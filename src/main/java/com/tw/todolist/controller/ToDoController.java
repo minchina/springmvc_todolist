@@ -9,9 +9,11 @@ import com.tw.todolist.service.ToDoService;
 import com.tw.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -70,6 +72,17 @@ public class ToDoController {
         todo.addObject("todos", allToDos);
         todo.addObject("newtodo", toDoForm);
         return todo;
+    }
+    @RequestMapping(value = "/v1/todo/added", method = RequestMethod.GET)
+    public String show(HttpServletRequest httpServletRequest, Model model) {
+        List<ToDo> allToDos = toDoService.findAllToDos();
+        ModelAndView todo = new ModelAndView("newTodo");
+        ToDoForm toDoForm = new ToDoForm("");
+        toDoForm.setGender(Gender.MALE);
+        model.addAttribute("todos", allToDos);
+        model.addAttribute("newtodo", toDoForm);
+
+        return "redirect:add";
     }
     @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)
     @ResponseBody
