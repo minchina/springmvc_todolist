@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @Controller
 @RequestMapping("/")
 public class ToDoController {
@@ -26,7 +28,7 @@ public class ToDoController {
     @Autowired
     private ToDoService toDoService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = GET)
     public ModelAndView showAllToDos(){
 
         ModelAndView modelAndView = new ModelAndView("index");
@@ -35,7 +37,7 @@ public class ToDoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/todo/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/todo/add", method = POST)
     @ResponseBody
     public ToDo addToDo(@RequestParam("name") ToDo toDo, @RequestParam("user_id") Long userId){
         User user = userService.findOne(userId);
@@ -45,7 +47,7 @@ public class ToDoController {
 
     }
 
-    @RequestMapping(value = "/todo/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/todo/delete", method = POST)
     @ResponseBody
     public Long deleteToDo(@RequestParam("id") Long id)  {
 
@@ -54,7 +56,7 @@ public class ToDoController {
 
     }
 
-    @RequestMapping(value = "/todo/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/todo/update", method = POST)
     @ResponseBody
     public ToDo updateToDoStatus(@RequestBody final ToDo toDo){
 
@@ -63,7 +65,7 @@ public class ToDoController {
 
     }
 
-    @RequestMapping(value = "/v1/todo/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/todo/add", method = GET)
     public ModelAndView showAddPage() {
         List<ToDo> allToDos = toDoService.findAllToDos();
         ModelAndView todo = new ModelAndView("newTodo");
@@ -73,18 +75,15 @@ public class ToDoController {
         todo.addObject("newtodo", toDoForm);
         return todo;
     }
-    @RequestMapping(value = "/v1/todo/added", method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/v2/todo/add", "/v1/todo/add2"}, method = GET)
     public String show(HttpServletRequest httpServletRequest, Model model) {
         List<ToDo> allToDos = toDoService.findAllToDos();
-        ModelAndView todo = new ModelAndView("newTodo");
-        ToDoForm toDoForm = new ToDoForm("");
-        toDoForm.setGender(Gender.MALE);
-        model.addAttribute("todos", allToDos);
-        model.addAttribute("newtodo", toDoForm);
-
-        return "redirect:add";
+        prepareModel(model, allToDos);
+        return "newTodo";
     }
-    @RequestMapping(value = "/v1/todo/add", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/v1/todo/add", method = POST)
     @ResponseBody
     public List<ToDo> addTodo(@RequestBody ToDoForm toDoForm) {
         ToDo toDo = new ToDo();
@@ -93,6 +92,13 @@ public class ToDoController {
         return toDoService.findAllToDos();
 
     }
+
+    private void prepareModel(Model model, List<ToDo> allToDos) {
+        model.addAttribute("todos", allToDos);
+        model.addAttribute("newtodo", new ToDoForm());
+        model.addAttribute("show", true);
+    }
+
 
     private void mapToDoFormToDomain(ToDo toDo, ToDoForm toDoForm) {
         toDo.setComplete(false);

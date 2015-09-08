@@ -24,13 +24,14 @@
 
 <form  class="todo" name="NewToDoPageForm" method="post" action="/v1/todo/add">
     <div id="test_format" >
-        Todo Name:<input type="text" name="name" value="${newtodo.name}">
+        Todo Name:<input type="text" name="name" value="${newtodo.name}" required>
 
         <input type="text" name="gender" value="${newtodo.gender}">
     </div>
 
     <button type="button" id="submit_todo">Click Me To Submit</button>
 </form>
+<input type="text" value="${show}">
 
 <script type="text/javascript" >
     $(document).ready(function(){
