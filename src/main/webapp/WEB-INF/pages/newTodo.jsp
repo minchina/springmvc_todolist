@@ -4,6 +4,7 @@
 <head>
     <title>NEW TODO PAGE</title>
     <link rel="stylesheet" href="../../static/styles/todo.css" />
+    <link rel="stylesheet" href="<c:url value="/static/bower_components/bootstrap/dist/css/bootstrap.css" />" />
     <script type="text/javascript" src="../../static/bower_components/jquery/dist/jquery.min.js" ></script>
     <script type="text/javascript" src="../../static/js/jquery.formality-1.2.2.js"></script>
     <script type="text/javascript" src="../../static/js/jquery.tmpl.js" ></script>
@@ -27,11 +28,12 @@
         Todo Name:<input type="text" name="name" value="${newtodo.name}" required>
 
         <input type="text" name="gender" value="${newtodo.gender}">
+
+        <input name="name" type="text" class="hidden" value="${newtodo.userForm.name}">
     </div>
 
     <button type="button" id="submit_todo">Click Me To Submit</button>
 </form>
-<input type="text" value="${show}">
 
 <script type="text/javascript" >
     $(document).ready(function(){

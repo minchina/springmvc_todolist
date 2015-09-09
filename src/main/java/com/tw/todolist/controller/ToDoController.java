@@ -4,6 +4,7 @@ package com.tw.todolist.controller;
 import com.tw.todolist.domain.ToDo;
 import com.tw.todolist.domain.User;
 import com.tw.todolist.domain.form.ToDoForm;
+import com.tw.todolist.domain.form.UserForm;
 import com.tw.todolist.enumeration.Gender;
 import com.tw.todolist.service.ToDoService;
 import com.tw.todolist.service.UserService;
@@ -39,7 +40,7 @@ public class ToDoController {
 
     @RequestMapping(value = "/todo/add", method = POST)
     @ResponseBody
-    public ToDo addToDo(@RequestParam("name") ToDo toDo, @RequestParam("user_id") Long userId){
+    public ToDo addToDo(@RequestParam("name") ToDo toDo, @RequestParam("user_id") Long userId) {
         User user = userService.findOne(userId);
         user.addToDo(toDo);
         userService.save(user);
@@ -71,6 +72,7 @@ public class ToDoController {
         ModelAndView todo = new ModelAndView("newTodo");
         ToDoForm toDoForm = new ToDoForm("");
         toDoForm.setGender(Gender.MALE);
+        toDoForm.setUserForm(new UserForm("ncmao"));
         todo.addObject("todos", allToDos);
         todo.addObject("newtodo", toDoForm);
         return todo;

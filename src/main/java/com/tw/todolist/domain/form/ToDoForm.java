@@ -8,6 +8,8 @@ public class ToDoForm {
 
     private Gender gender;
 
+    private UserForm userForm;
+
 
     public ToDoForm() {
 
@@ -30,5 +32,13 @@ public class ToDoForm {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public UserForm getUserForm() {
+        return userForm;
+    }
+
+    public void setUserForm(UserForm userForm) {
+        this.userForm = userForm;
     }
 }
