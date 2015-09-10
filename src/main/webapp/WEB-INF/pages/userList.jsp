@@ -33,6 +33,13 @@
 <div style="margin-top: 100px">
     <jsp:include page="upload.jsp" />
 </div>
+<script type='text/x-jquery-tmpl' id='person-template'>
+  <div class='person'>
+    <strong>Name: </strong> ${ Name } <br/>
+    <strong>Age: </strong> ${ Age } <br/>
+    <strong>Country: </strong> ${ Country } <br/>
+  </div>
+</script>
 
 
 <script src="<c:url value="/static/bower_components/jquery/dist/jquery.js" />"></script>
