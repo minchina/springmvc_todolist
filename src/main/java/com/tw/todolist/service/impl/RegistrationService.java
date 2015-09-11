@@ -14,6 +14,8 @@ import java.util.Map;
 
 public class RegistrationService {
 
+    public static final String EMAIL_TEMPLATE = "template/registration-confirmation.vm";
+
     @Value("${email.switch:false}")
     private Boolean isAllowRegister;
 
@@ -38,15 +40,17 @@ public class RegistrationService {
     }
 
     private void sendConfirmationEmail(final Order order) {
+
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             public void prepare(MimeMessage mimeMessage) throws Exception {
+
                 MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
                 message.setTo(order.getCustomer().getEmailAddress());
                 message.setFrom("webmaster@csonth.gov.uk");
                 Map model = new HashMap();
                 model.put("order", order);
                 String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
-                        "template/registration-confirmation.vm", "utf-8", model);
+                        EMAIL_TEMPLATE, "utf-8", model);
                 message.setText(text, true);
             }
         };
