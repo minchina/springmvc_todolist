@@ -54,6 +54,25 @@
     </filter-mapping>
 
     <servlet>
+        <servlet-name>JavascriptServlet</servlet-name>
+        <servlet-class>net.jawr.web.servlet.JawrServlet</servlet-class>
+        <init-param>
+            <param-name>configLocation</param-name>
+            <param-value>classpath:properties/jawr.properties</param-value>
+        </init-param>
+        <init-param>
+            <param-name>mapping</param-name>
+            <param-value>/jsJawrPath/</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>JavascriptServlet</servlet-name>
+        <url-pattern>/jsJawrPath/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>

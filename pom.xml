@@ -243,6 +243,13 @@
             <version>2.2.12</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.jawr</groupId>
+            <artifactId>jawr-core</artifactId>
+            <version>3.8</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
