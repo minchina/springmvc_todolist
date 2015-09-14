@@ -248,8 +248,11 @@
             <artifactId>jawr-core</artifactId>
             <version>3.8</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>org.concordion</groupId>
+            <artifactId>concordion</artifactId>
+            <version>1.5.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -257,11 +260,11 @@
         <testSourceDirectory>
             src/test/java
         </testSourceDirectory>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-            </testResource>
-        </testResources>
+        <!--<testResources>-->
+            <!--<testResource>-->
+                <!--<directory>src/test/resources</directory>-->
+            <!--</testResource>-->
+        <!--</testResources>-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
