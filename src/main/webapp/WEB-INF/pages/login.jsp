@@ -35,9 +35,9 @@
     </p>
   </c:if>
   <table>
-    <tr><td>User:</td><td><input type='text' name='j_username' value=''></td></tr>
-    <tr><td>Password:</td><td><input type='password' name='j_password'/></td></tr>
-    <tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
+    <tr><td>User:</td><td><input type='text' name='j_username' id="loginUser" value=''></td></tr>
+    <tr><td>Password:</td><td><input type='password' name='j_password' id="loginPass"/></td></tr>
+    <tr><td colspan='2'><input name="submit" type="submit" value="Login" id="login"/></td></tr>
   </table>
 </form>
 

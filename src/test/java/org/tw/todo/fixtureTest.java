@@ -1,0 +1,36 @@
+package org.tw.todo;
+
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.tw.todo.pages.LoginPage;
+import org.tw.todo.pages.TestFixure;
+
+import static org.junit.Assert.assertTrue;
+
+public class fixtureTest {
+
+    private static WebDriver driver;
+
+    @BeforeClass
+    public static void Setup() {
+        System.setProperty("webdriver.chrome.driver", "/Users/ncmao/dev/package/chromedriver");
+        driver = TestFixure.getWebDriver();
+
+    }
+
+    @Test
+    public void shouldGetWebDriver() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        loginPage.Login();
+        assertTrue(true);
+    }
+
+    @AfterClass
+    public static void destory() {
+        driver.close();
+    }
+}
