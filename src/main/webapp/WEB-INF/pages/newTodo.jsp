@@ -30,10 +30,21 @@
         <input type="text" name="gender" value="${newtodo.gender}">
 
         <input name="name" type="text" class="hidden" value="${newtodo.userForm.name}">
-    </div>
 
+        <button type="button" id="test_tmpl">Test Tmpl</button>
+    </div>
     <button type="button" id="submit_todo">Click Me To Submit</button>
 </form>
+
+<script id="newTodoTemplate"  type="text/x-jQuery-tmpl">
+     Todo Name:<input type="text" class="hasReplaced" name="name"  required>
+
+        <input type="text" name="gender">
+
+        <input name="name" type="text" class="hidden">
+
+        <button type="button" id="test_tmpl">Test Tmpl</button>
+</script>
 
 <script type="text/javascript" >
     $(document).ready(function(){

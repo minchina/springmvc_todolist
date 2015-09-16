@@ -3,9 +3,12 @@ var Equote = Equote || {};
 Equote.init = function() {
 
     var data = null;
+    var $newTodoTemplate = $('#newTodoTemplate');
 
     function addListenr() {
+
         var $sumbit = $("#submit_todo");
+        var $test_impl = $('#test_tmpl');
 
         $sumbit.click(function(){
 
@@ -21,17 +24,25 @@ Equote.init = function() {
                 'dataType': 'json',
                 'success': successHandle
             });
+        });
+
+        $test_impl.click(function(event){
+            alert("hello,world");
         })
     }
 
     function successHandle(result) {
-        var $todos = $("#todos");
-        var target ="";
-        for(var i=0;i<result.length;i++) {
-            target= target + "<div>" + result[i].name + "</div>";
-        }
-        $todos.empty();
-        $(target).appendTo($todos);
+        //var $todos = $("#todos");
+        //var target ="";
+        //for(var i=0;i<result.length;i++) {
+        //    target= target + "<div>" + result[i].name + "</div>";
+        //}
+        //$todos.empty();
+        //$(target).appendTo($todos);
+        $("#test_format").empty();
+
+        $newTodoTemplate.tmpl({}).appendTo("#test_format");
+        addListenr();
         console.log(result);
     }
 
