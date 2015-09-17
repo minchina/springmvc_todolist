@@ -32,13 +32,6 @@ Equote.init = function() {
     }
 
     function successHandle(result) {
-        //var $todos = $("#todos");
-        //var target ="";
-        //for(var i=0;i<result.length;i++) {
-        //    target= target + "<div>" + result[i].name + "</div>";
-        //}
-        //$todos.empty();
-        //$(target).appendTo($todos);
         $("#test_format").empty();
 
         $newTodoTemplate.tmpl({}).appendTo("#test_format");
