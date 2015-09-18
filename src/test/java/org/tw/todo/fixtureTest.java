@@ -16,16 +16,14 @@ public class fixtureTest {
 
     @BeforeClass
     public static void Setup() {
-        System.setProperty("webdriver.chrome.driver", "/Users/ncmao/dev/package/chromedriver");
         driver = TestFixure.getWebDriver();
-
     }
 
     @Test
     public void shouldGetWebDriver() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
-        loginPage.Login();
+        loginPage.Login("demo", "demo");
         assertTrue(true);
     }
 

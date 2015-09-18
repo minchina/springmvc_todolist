@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
 
     private WebDriver webDriver;
+
     @FindBy(id = "loginUser")
     private WebElement loginUser;
 
@@ -28,9 +29,9 @@ public class LoginPage {
         this.webDriver.get("http://localhost:8080/login");
     }
 
-    public void Login() {
-        loginUser.sendKeys("demo");
-        loginPass.sendKeys("demo");
+    public void Login(String userName, String password) {
+        loginUser.sendKeys(userName);
+        loginPass.sendKeys(password);
         loginButton.click();
 
     }

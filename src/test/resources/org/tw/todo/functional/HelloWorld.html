@@ -1,6 +1,7 @@
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <body>
 <p concordion:set="#loginUser">demo</p>
-<p concordion:assertEquals="getGreeting()">Hello World!</p>
+<p concordion:set="#password">demo</p>
+<p concordion:execute="login(#loginUser,#password)">Hello World!</p>
 </body>
 </html>
