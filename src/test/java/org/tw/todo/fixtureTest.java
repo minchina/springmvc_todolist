@@ -18,7 +18,6 @@ public class fixtureTest {
     public static void Setup() {
         driver = TestFixure.getWebDriver();
     }
-
     
 
     @Test
