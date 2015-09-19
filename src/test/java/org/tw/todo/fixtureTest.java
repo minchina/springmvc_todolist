@@ -19,6 +19,8 @@ public class fixtureTest {
         driver = TestFixure.getWebDriver();
     }
 
+    
+
     @Test
     public void shouldGetWebDriver() {
         LoginPage loginPage = new LoginPage(driver);
