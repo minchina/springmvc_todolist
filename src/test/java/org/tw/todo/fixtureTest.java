@@ -10,7 +10,7 @@ import org.tw.todo.pages.TestFixure;
 
 import static org.junit.Assert.assertTrue;
 
-public class fixtureTest {
+public class FixtureTest {
 
     private static WebDriver driver;
 
