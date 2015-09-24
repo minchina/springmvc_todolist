@@ -15,13 +15,14 @@
 <h1>All todos</h1>
 <div id="todos">
 
-<c:forEach var="todo" items="${todos}">
+    <span>${flag}</span>
+
+    <c:forEach var="todo" items="${todos}">
     <div>
         <span>${todo.name}</span>
     </div>
 </c:forEach>
 </div>
-
 
 <form  class="todo" name="NewToDoPageForm" method="post" action="/v1/todo/add">
     <div id="test_format" >

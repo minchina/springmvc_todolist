@@ -99,6 +99,7 @@ public class ToDoController {
         model.addAttribute("todos", allToDos);
         model.addAttribute("newtodo", new ToDoForm());
         model.addAttribute("show", true);
+        model.addAttribute("flag", "sendSuccess");
     }
 
 
