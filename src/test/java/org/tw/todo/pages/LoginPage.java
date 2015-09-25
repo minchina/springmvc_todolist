@@ -36,6 +36,11 @@ public class LoginPage {
 
     }
 
+    public void goToIndex(){
+        this.webDriver.get("http://localhost:8080/");
+        ToDoListPage toDoListPage = new ToDoListPage(webDriver);
+    }
+
     public WebDriver getWebDriver() {
         return webDriver;
     }
