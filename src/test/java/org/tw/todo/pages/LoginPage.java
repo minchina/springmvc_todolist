@@ -7,8 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends Page {
 
-    private WebDriver webDriver;
-
+    public static String LOGIN_URL="http://localhost:8080/login";
     @FindBy(id = "loginUser")
     private WebElement loginUser;
 
@@ -18,17 +17,6 @@ public class LoginPage extends Page {
     @FindBy(id = "login")
     private WebElement loginButton;
 
-
-    public LoginPage(WebDriver driver) {
-
-        this.webDriver = driver;
-        PageFactory.initElements(getWebDriver(), this);
-    }
-
-    public void open() {
-        this.webDriver.get("http://localhost:8080/login");
-    }
-
     public void Login(String userName, String password) {
         loginUser.sendKeys(userName);
         loginPass.sendKeys(password);
@@ -36,18 +24,6 @@ public class LoginPage extends Page {
 
     }
 
-    public void goToIndex(){
-        this.webDriver.get("http://localhost:8080/");
-        ToDoListPage toDoListPage = new ToDoListPage(webDriver);
-    }
-
-    public WebDriver getWebDriver() {
-        return webDriver;
-    }
-
-    public void setWebDriver(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
 
 
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ToDoListPage {
+public class ToDoListPage extends Page {
 
     @FindBy(id = "user_list")
     private WebElement userListButton;
@@ -15,7 +15,7 @@ public class ToDoListPage {
         PageFactory.initElements(webDriver,this);
     }
 
-    public void goToUsers(){
-        userListButton.click();
+    public String getUserListText() {
+        return userListButton.getText();
     }
 }

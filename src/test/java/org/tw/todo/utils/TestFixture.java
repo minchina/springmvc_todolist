@@ -1,9 +1,9 @@
-package org.tw.todo.pages;
+package org.tw.todo.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestFixure {
+public class TestFixture {
 
     static {
         System.setProperty("webdriver.chrome.driver", "/Users/ncmao/dev/package/chromedriver");

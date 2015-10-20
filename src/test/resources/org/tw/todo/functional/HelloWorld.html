@@ -1,10 +1,19 @@
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <body>
-<p concordion:set="#loginUser">demo</p>
-<p concordion:set="#password">demo</p>
+<p>
+    username:<span concordion:set="#loginUser">demo</span>
+    password:<span concordion:set="#password">demo</span>
 <p concordion:execute="login(#loginUser,#password)">Hello World!</p>
 
-<p concordion:execute="goToIndex()"></p>
+</p>
+
+
+
+<div class="criteria">
+    <span>go to index page</span>
+    <p concordion:assertEquals="getUserListText()">用户列表</p>
+</div>
+
 
 </body>
 </html>
