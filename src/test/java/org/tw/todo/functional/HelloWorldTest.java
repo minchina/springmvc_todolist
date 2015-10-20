@@ -23,6 +23,7 @@ public class HelloWorldTest  {
     }
 
     public void goToIndex(){
+
         loginPage.goToIndex();
     }
 
