@@ -4,12 +4,12 @@ import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.tw.todo.pages.LoginPage;
-import org.tw.todo.pages.Page;
-import org.tw.todo.pages.ToDoListPage;
+import org.tw.todo.functional.pages.LoginPage;
+import org.tw.todo.functional.pages.Page;
+import org.tw.todo.functional.pages.ToDoListPage;
 import org.tw.todo.utils.TestFixture;
 
-import static org.tw.todo.pages.LoginPage.LOGIN_URL;
+import static org.tw.todo.functional.pages.LoginPage.LOGIN_URL;
 
 @RunWith(ConcordionRunner.class)
 public class HelloWorldTest  {

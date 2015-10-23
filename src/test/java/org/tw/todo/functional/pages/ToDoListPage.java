@@ -1,4 +1,4 @@
-package org.tw.todo.pages;
+package org.tw.todo.functional.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
