@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends Page {
 
-    public static String LOGIN_URL="http://localhost:8080/login";
+    public static String LOGIN_URL="http://localhost:8081/login";
     @FindBy(id = "loginUser")
     private WebElement loginUser;
 

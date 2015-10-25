@@ -3,10 +3,12 @@ package org.tw.todo.functional;
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.tw.todo.functional.pages.LoginPage;
 import org.tw.todo.functional.pages.Page;
 import org.tw.todo.functional.pages.ToDoListPage;
+import org.tw.todo.functional.pages.UserListPage;
 import org.tw.todo.utils.TestFixture;
 
 import static org.tw.todo.functional.pages.LoginPage.LOGIN_URL;
@@ -14,7 +16,7 @@ import static org.tw.todo.functional.pages.LoginPage.LOGIN_URL;
 @RunWith(ConcordionRunner.class)
 public class HelloWorldTest  {
 
-
+    private ToDoListPage toDoListPage;
     public static WebDriver webDriver;
 
     public void login(String userName, String password) {
@@ -26,8 +28,14 @@ public class HelloWorldTest  {
 
 
     public String getUserListText() {
-        ToDoListPage toDoListPage = Page.continueFlow(webDriver, ToDoListPage.class);
+        toDoListPage = Page.continueFlow(webDriver, ToDoListPage.class);
         return toDoListPage.getUserListText();
+    }
+
+    public int showAllUsers() {
+        toDoListPage.goToUserListPage();
+        UserListPage userListPage = Page.continueFlow(webDriver, UserListPage.class);
+        return userListPage.getUserList().findElements(By.tagName("li")).size();
     }
 
 
@@ -35,13 +43,6 @@ public class HelloWorldTest  {
         return "Hello " + what + "!";
     }
 
-    public WebDriver getWebDriver() {
-        return webDriver;
-    }
-
-    public void setWebDriver(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
 
     @AfterClass
     public static void close() {

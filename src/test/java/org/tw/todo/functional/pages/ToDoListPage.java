@@ -18,4 +18,9 @@ public class ToDoListPage extends Page {
     public String getUserListText() {
         return userListButton.getText();
     }
+
+
+    public void goToUserListPage(){
+        userListButton.click();
+    }
 }

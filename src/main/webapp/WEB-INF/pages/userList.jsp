@@ -30,9 +30,9 @@
         </c:forEach>
     </ul>
 </section>
-<div style="margin-top: 100px">
-    <jsp:include page="upload.jsp" />
-</div>
+<%--<div style="margin-top: 100px">--%>
+    <%--<jsp:include page="upload.jsp" />--%>
+<%--</div>--%>
 <script type='text/x-jquery-tmpl' id='person-template'>
   <div class='person'>
     <strong>Name: </strong> ${ Name } <br/>
