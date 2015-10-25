@@ -17,6 +17,7 @@ import static org.tw.todo.functional.pages.LoginPage.LOGIN_URL;
 public class HelloWorldTest  {
 
     private ToDoListPage toDoListPage;
+    private UserListPage userListPage;
     public static WebDriver webDriver;
 
     public void login(String userName, String password) {
@@ -34,8 +35,12 @@ public class HelloWorldTest  {
 
     public int showAllUsers() {
         toDoListPage.goToUserListPage();
-        UserListPage userListPage = Page.continueFlow(webDriver, UserListPage.class);
+        userListPage = Page.continueFlow(webDriver, UserListPage.class);
         return userListPage.getUserList().findElements(By.tagName("li")).size();
+    }
+
+    public String addNewUser(String userName) {
+        return userListPage.addNewUser(userName);
     }
 
 

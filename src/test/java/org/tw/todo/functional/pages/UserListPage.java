@@ -1,5 +1,6 @@
 package org.tw.todo.functional.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,5 +28,11 @@ public class UserListPage extends Page {
 
     public void setUserList(WebElement userList) {
         this.userList = userList;
+    }
+
+    public String addNewUser(String userName) {
+        newUser.sendKeys(userName);
+        newUser.sendKeys(Keys.RETURN);
+        return userName;
     }
 }
