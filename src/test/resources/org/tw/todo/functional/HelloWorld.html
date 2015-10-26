@@ -1,40 +1,29 @@
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 
 <head>
-    <link href="./concordion.css" rel="stylesheet" type="text/css" />
+    <link href="./concordion.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<br>
+<p concordion:execute="startApp()"></p>
+
 <p>
-    用户可以使用<span concordion:set="#loginUser">demo</span>
+    用户可以使用<span concordion:set="#userName">demo</span>
     和
     <span concordion:set="#password">demo</span>
     登陆
 
-<p concordion:execute="login(#loginUser,#password)"></p>
-
+<span concordion:execute="login(#userName,#password)"></span>
+系统,登陆之后可以看见<span concordion:assertEquals="getToDosButtonText()">用户列表</span>按钮
 </p>
 
-
-<div class="criteria">
-    按钮上的内容应该是<span concordion:assertEquals="getUserListText()">用户列表</span>
+<div>
+    来到用户列表页面<span concordion:execute="goUserListPage()"></span>，此时一共应该有
+    <span concordion:assertEquals="getAllUsers()">2</span>个用户.我们可以在输入框中输入用户名来新增新用户，
+    例如新增<span concordion:set="#userName">user1</span>
+    <span concordion:execute="addNewUser(#userName)"></span>为新用户,
+    新增到用户列表中后,增加后应该有<span concordion:assertEquals="getAllUsers()">3</span>个用户
 </div>
-<div class="criteria">
-
-    <p concordion:execute="goToUserListPage()"></p>
-
-    应该有<span concordion:assertEquals="showAllUsers()">2</span>个用户
-    显示在用户列表中
-</div>
-</br>
-
-<div class="criteria">
-    可以将<span concordion:set="#newUserName">user1</span>
-    <span concordion:execute="addNewUser(#newUserName)"></span>
-    新增到用户列表中,增加后应该有<span concordion:assertEquals="showAllUsers()">3</span>个用户
-</div>
-
-
+<p concordion:execute="destroy()"></p>
 
 
 </body>
