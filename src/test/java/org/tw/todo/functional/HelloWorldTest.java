@@ -10,11 +10,13 @@ import org.tw.todo.functional.pages.Page;
 import org.tw.todo.functional.pages.ToDoListPage;
 import org.tw.todo.functional.pages.UserListPage;
 import org.tw.todo.utils.TestFixture;
+import org.tw.todo.utils.WaitUtil;
 
+import static java.lang.Thread.sleep;
 import static org.tw.todo.functional.pages.LoginPage.LOGIN_URL;
 
 @RunWith(ConcordionRunner.class)
-public class HelloWorldTest  {
+public class HelloWorldTest {
 
     private ToDoListPage toDoListPage;
     private UserListPage userListPage;
@@ -23,8 +25,7 @@ public class HelloWorldTest  {
     public void login(String userName, String password) {
         webDriver = TestFixture.getWebDriver();
         webDriver.get(LOGIN_URL);
-        LoginPage loginPage = Page.continueFlow(webDriver, LoginPage.class);
-        loginPage.Login(userName, password);
+        Page.continueFlow(webDriver, LoginPage.class).Login(userName, password);
     }
 
 
@@ -33,19 +34,19 @@ public class HelloWorldTest  {
         return toDoListPage.getUserListText();
     }
 
-    public int showAllUsers() {
+    public void goToUserListPage() {
         toDoListPage.goToUserListPage();
-        userListPage = Page.continueFlow(webDriver, UserListPage.class);
-        return userListPage.getUserList().findElements(By.tagName("li")).size();
     }
 
-    public String addNewUser(String userName) {
-        return userListPage.addNewUser(userName);
+    public int showAllUsers() {
+        return Page.continueFlow(webDriver, UserListPage.class).getUserList().findElements(By.tagName("li")).size();
     }
 
-
-    public String getGreeting(String what) {
-        return "Hello " + what + "!";
+    public void addNewUser(String userName) throws InterruptedException {
+        Page.continueFlow(webDriver, UserListPage.class).addNewUser(userName);
+        int currentUser = showAllUsers() + 1;
+        String selector = "#todo-list > li:nth-child(" + currentUser + ") > div > a";
+        WaitUtil.waitFor(webDriver, By.cssSelector(selector));
     }
 
 

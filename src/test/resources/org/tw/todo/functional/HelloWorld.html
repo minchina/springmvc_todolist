@@ -3,6 +3,7 @@
 <head>
     <link href="./concordion.css" rel="stylesheet" type="text/css" />
 </head>
+<body>
 <br>
 <p>
     用户可以使用<span concordion:set="#loginUser">demo</span>
@@ -19,6 +20,9 @@
     按钮上的内容应该是<span concordion:assertEquals="getUserListText()">用户列表</span>
 </div>
 <div class="criteria">
+
+    <p concordion:execute="goToUserListPage()"></p>
+
     应该有<span concordion:assertEquals="showAllUsers()">2</span>个用户
     显示在用户列表中
 </div>
@@ -26,8 +30,8 @@
 
 <div class="criteria">
     可以将<span concordion:set="#newUserName">user1</span>
-    应该有两个用户<span concordion:execute="addNewUser(#newUserName)">user1</span>
-    新增到用户列表中
+    <span concordion:execute="addNewUser(#newUserName)"></span>
+    新增到用户列表中,增加后应该有<span concordion:assertEquals="showAllUsers()">3</span>个用户
 </div>
 
 
