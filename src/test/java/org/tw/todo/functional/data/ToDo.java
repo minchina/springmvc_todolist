@@ -11,7 +11,9 @@ import org.tw.todo.utils.WaitUtil;
 
 public class ToDo {
 
-    public static String LOGIN_URL = "http://localhost:8081/login";
+    public static String LOGIN_URL = "http://localhost:8080/login";
+
+    private Page currentPage;
 
     private WebDriver webDriver;
 
