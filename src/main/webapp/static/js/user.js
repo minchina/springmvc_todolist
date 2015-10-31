@@ -8,12 +8,7 @@ $(document).ready(function(){
             url:"/users/add",
             data:{user_name:user_name},
             type:"POST",
-            success:function(json_user){
-               var user = json_user;
-               var $user_list = $("#todo-list");
-               $user_list.append(concatString(user.name,user.id));
-               $name_input.val("");
-            }
+            success:addUserSuccessCallback
          })
       }
    });
@@ -30,6 +25,13 @@ $(document).ready(function(){
             }
         })
     });
+
+    function addUserSuccessCallback(json_user){
+        var user = json_user;
+        var $user_list = $("#todo-list");
+        $user_list.append(concatString(user.name,user.id));
+        $name_input.val("");
+    }
 
    function concatString(user_name,user_id){
       var expectString =
