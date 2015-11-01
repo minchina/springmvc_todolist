@@ -22,8 +22,7 @@
     <li>
         来到用户列表页面<span concordion:execute="goUserListPage()"></span>，此时一共应该有
         <span concordion:assertEquals="getAllUsers()">2</span>个用户.我们可以在输入框中输入用户名来新增新用户，
-        例如新增<span concordion:set="#userName">user1</span>
-        <span concordion:execute="addNewUser(#userName)"></span>为新用户,
+        <span concordion:execute="addNewUser(#TEXT)">user1</span>为新用户,
         新增到用户列表中后,增加后应该有<span concordion:assertEquals="getAllUsers()">3</span>个用户
     </li>
 </ul>
