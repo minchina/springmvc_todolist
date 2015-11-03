@@ -1,7 +1,19 @@
 $(document).ready(function(){
 
+    function testFc() {
+        return "123";
+    }
+
     var add_user_url = "/users/add";
     var delete_user_url = "/users/delete";
+    var markup = '<li data-id="${newUserId}">'+
+        '<div class="view">'+
+        '<a href="users/${newUserName}/todos">${newUserName} (${Utils.interface.testTmplFc()})</a>'+
+        '<button class="destroy"></button>'+
+        '</div>'+
+        '</li>';
+
+
 
    var $name_input = $('#new-todo');
    $name_input.keydown(function(e){
@@ -18,9 +30,12 @@ $(document).ready(function(){
     });
 
     function addUserSuccessCallback(json_user){
+        var newUsers = [{"newUserId":123, "newUserName": "ncmao"}];
+        $.template( "movieTemplate", markup );
         var user = json_user;
         var $user_list = $("#todo-list");
-        $user_list.append(concatString(user.name,user.id));
+        $.tmpl( "movieTemplate", newUsers )
+            .appendTo( "#todo-list" );
         $name_input.val("");
     }
 
