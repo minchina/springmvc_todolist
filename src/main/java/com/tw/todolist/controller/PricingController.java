@@ -25,7 +25,7 @@ public class PricingController {
 
 
 
-    @RequestMapping(value = "/calculate", method = POST)
+    @RequestMapping(value = "/calculate", method = GET)
     @ResponseBody
     public List<PremiumResponse> getPremiumResponse()
     {
