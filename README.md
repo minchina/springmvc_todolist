@@ -9,9 +9,4 @@
 2. Mockito
 3. Webdriver
 4. concordion
-//
-4. concordion
-
-
-
-/////
+fixed a bug about rules
