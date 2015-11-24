@@ -3,15 +3,22 @@ package com.tw.todolist.controller;
 
 import com.tw.todolist.domain.ToDo;
 import com.tw.todolist.domain.User;
+import com.tw.todolist.service.EventLogger;
 import com.tw.todolist.service.ToDoService;
 import com.tw.todolist.service.UserService;
-import com.tw.todolist.service.impl.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
+
+import static com.google.common.collect.Maps.newLinkedHashMap;
 
 
 @Controller
@@ -39,7 +46,12 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public User addUser(@RequestParam("user_name") User newUser){
-        return userService.save(newUser);
+        User savedUser = userService.save(newUser);
+        Map<String, Object> message = newLinkedHashMap();
+        message.put("user_name", savedUser.getName());
+        message.put("user_id", savedUser.getId());
+        EventLogger.log("add_user", message);
+        return savedUser;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
