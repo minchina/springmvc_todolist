@@ -57,8 +57,10 @@ public class UserController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     private Long deleteUser(@RequestParam("user_id") Long id) throws Exception {
-
         userService.deleteById(id);
+        Map<String, Object> message = newLinkedHashMap();
+        message.put("user_id", id);
+        EventLogger.log("delete_user", message);
         return id;
     }
 
