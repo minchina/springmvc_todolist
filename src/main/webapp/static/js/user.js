@@ -4,11 +4,11 @@ $(document).ready(function(){
         return "123";
     }
 
-    var add_user_url = "/users/add";
-    var delete_user_url = "/users/delete";
+    var add_user_url = "/todolist/users/add";
+    var delete_user_url = "/todolist/users/delete";
     var markup = '<li data-id="${newUserId}">'+
         '<div class="view">'+
-        '<a href="users/${newUserName}/todos">${newUserName} (${Utils.interface.testTmplFc()})</a>'+
+        '<a href="users/${newUserName}/todos">${newUserName}</a>'+
         '<button class="destroy"></button>'+
         '</div>'+
         '</li>';
@@ -30,7 +30,7 @@ $(document).ready(function(){
     });
 
     function addUserSuccessCallback(json_user){
-        var newUsers = [{"newUserId":123, "newUserName": "ncmao"}];
+        var newUsers = [{"newUserId":json_user["id"], "newUserName":json_user["name"]}];
         $.template( "movieTemplate", markup );
         var user = json_user;
         var $user_list = $("#todo-list");
