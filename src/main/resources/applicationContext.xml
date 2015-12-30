@@ -10,6 +10,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
+    
+    <context:component-scan base-package="com.tw.todolist.repositoy.jdbcImpl" />
 
     <!--@Repository annotation -->
     <jpa:repositories base-package="com.tw.todolist.repositoy"/>
