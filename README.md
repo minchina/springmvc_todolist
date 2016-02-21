@@ -3,6 +3,8 @@
 2. Spring security
 3. Spring Data Jpa
 4. Java mail
+5. Jdbc template
+6. MyBatis
 
 ##Test
 1. Junit
