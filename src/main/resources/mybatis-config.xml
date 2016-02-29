@@ -19,6 +19,6 @@
               </environment>
        </environments>
        <mappers>
-              <mapper resource="mappers/UserMapper.xml"/>
+              <package name="com.tw.todolist.mappers" />
        </mappers>
 </configuration>
