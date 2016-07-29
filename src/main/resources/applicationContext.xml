@@ -57,6 +57,15 @@
         <property name="velocityEngine" ref="velocityEngine"/>
     </bean>
 
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="classpath:/templates" />
+        <property name="preferFileSystemAccess" value="false" />
+    </bean>
+
+    <bean id="templateService" class="com.tw.todolist.service.TemplateService">
+        <constructor-arg value="#{freemarkerConfig.configuration}" />
+    </bean>
+
     <!--hibernate configuration-->
     <import resource="classpath:hibernateConfig.xml"/>
 
