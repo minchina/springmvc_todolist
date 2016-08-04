@@ -5,6 +5,7 @@
 4. Java mail
 5. Jdbc template
 6. MyBatis
+7. Freemarker
 
 ##Test
 1. Junit
