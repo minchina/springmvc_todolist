@@ -3,10 +3,22 @@ package com.tw.todolist.domain;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import com.tw.todolist.domain.security.Role;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +26,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
+@NamedQueries({
+        @NamedQuery(name = "findUserByName", query = "from User us where us.name=:userName")
+})
 public class User {
 
 
@@ -23,7 +38,7 @@ public class User {
     private Long id;
 
     @Column(name = "name")
-    private String name="";
+    private String name = "";
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "userId")
@@ -31,18 +46,18 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = {
-            @JoinColumn(name = "USER_ID", nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID",
-                    nullable = false, updatable = false) })
+            @JoinColumn(name = "USER_ID", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID",
+                    nullable = false, updatable = false)})
     private Set<Role> roles = new HashSet<Role>();
 
     private String password;
 
-    public User(){
+    public User() {
 
     }
 
-    public User(String name){
+    public User(String name) {
         this.name = name;
     }
 
@@ -57,6 +72,7 @@ public class User {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -69,7 +85,7 @@ public class User {
         this.toDoList = toDoList;
     }
 
-    public void addToDo(ToDo toDo){
+    public void addToDo(ToDo toDo) {
         toDoList.add(toDo);
     }
 
