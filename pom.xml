@@ -15,6 +15,16 @@
         <env>local</env>
         <env.path>${basedir}/build/env/${env}</env.path>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://192.168.99.100:8003/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://192.168.99.100:8003/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -270,7 +280,12 @@
             <artifactId>lambdaj</artifactId>
             <version>2.3.3</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.8.2</version>
+            <type>maven-plugin</type>
+        </dependency>
 
     </dependencies>
 
@@ -337,6 +352,25 @@
                 <version>2.13</version>
                 <configuration>
                     <configLocation>${basedir}/src/main/resources/checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
                 </configuration>
             </plugin>
         </plugins>
