@@ -8,7 +8,7 @@
     <name>todolist</name>
 
     <properties>
-        <spring.version>4.1.1.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <usecase.version>1.2.0</usecase.version>
         <revision>SNAPSHOT</revision>
         <test.target.output.dir>${basedir}/target</test.target.output.dir>
